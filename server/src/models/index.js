@@ -31,16 +31,17 @@ fs.readdirSync(__dirname)
   check : https://github.com/sequelize/express-example
 
   // load the files we found in models into seq.
-
+  
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
   })
+  ------------------------------------ */  
   
------------------------------------- */  
-
-// seq = ORM, create access to Objects byd storing them in vars
-db.sequelize = sequelize
-db.Sequelize = Sequelize
+  
+  // seq = ORM, create access to Objects byd storing them in vars
+  
+  db.sequelize = sequelize
+  db.Sequelize = Sequelize
 
 module.exports = db

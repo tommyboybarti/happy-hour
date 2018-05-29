@@ -1,8 +1,8 @@
 // File that exports a fct which takes sequlize and DataTypes = seq model
 
-module.exports = (sequelize, DataTypes) =>
+module.exports = (sequelize, DataTypes) => {
 // seq. defines a new model called User for storing user related info
-  sequelize.define('User', {
+  return sequelize.define('User', {
     // attributes
     email: {
       type: DataTypes.STRING,
@@ -13,3 +13,5 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.STRING,
     }
   })
+}
+
