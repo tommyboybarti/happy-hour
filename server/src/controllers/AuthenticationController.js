@@ -1,0 +1,19 @@
+// controller folder is to define all the endpoints
+// import User model
+const {User} = require('../models')
+
+// export all routes that are connected to authentication
+module.exports = {
+  async register (req, res) {
+    try {
+      const user = await User.create(req.body)
+      // send back user obj to client who's requested the input
+      res.send(user.toJSON())
+  } catch (err) {
+      res.status(400).send({
+        error: 'This email is already in use'
+      })
+    }
+  }
+}
+
