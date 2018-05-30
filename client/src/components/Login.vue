@@ -41,10 +41,12 @@ export default {
     async login () {
       // call register fct on AS object. Then wait for response and store it
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         // axios returns error.repsonse.data and then we add .error (a message)
         this.error = error.response.data.error

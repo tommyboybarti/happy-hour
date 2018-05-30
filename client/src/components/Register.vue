@@ -11,7 +11,7 @@
               <v-card-text>
                 <v-form>
                   <v-text-field v-model="email" name="email" label="Email" type="text"></v-text-field>
-                  <v-text-field v-model="password" name="password" label="Password" type="password"></v-text-field>
+                  <v-text-field v-model="password" name="password" label="Password" type="password" autocomplete="new-password"></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -41,10 +41,12 @@ export default {
     async register () {
       // call register fct on AS object. Then wait for response and store it
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         // axios returns error.repsonse.data and then we add .error (a message)
         this.error = error.response.data.error
