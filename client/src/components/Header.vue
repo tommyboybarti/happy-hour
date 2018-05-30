@@ -12,6 +12,7 @@
     </v-toolbar-items> -->
     <v-spacer></v-spacer>
     <v-toolbar-items>
+      <!-- hide navigation depending on state of login -->
       <v-btn
         v-if="!$store.state.isUserLoggedIn"
         flat

@@ -1,3 +1,4 @@
+// Bringing in vuex module
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -6,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // strict = state can only be changed by action
   strict: true,
+  // different state vars that will be used for all the application
   state: {
     token: null,
     user: null,

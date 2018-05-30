@@ -12,9 +12,10 @@ Vue.config.productionTip = false
 
 Vue.use(Vuetify)
 
+// vue-router-sync syncs the store to the router. duh!
 sync(store, router)
 
-/* eslint-disable no-new */
+// setup for vue to use different modules
 new Vue({
   el: '#app',
   router,
