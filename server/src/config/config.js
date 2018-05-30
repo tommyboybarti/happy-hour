@@ -18,7 +18,7 @@ module.exports = {
   },
   // identification of jwt (tokens)
   authentication: {
-    // secret 
+    // secret string only known to server to check whether jwtoken is valid or not
     jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }

@@ -7,7 +7,7 @@ module.exports = (app) => {
   // calling middelware functions
     AuthenticationControllerPolicy.register,
     AuthenticationController.register)
-
+  // adding a login endpoint which calls the AC login method
   app.post('/login',
     AuthenticationController.login)
 }
