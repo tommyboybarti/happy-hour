@@ -6,7 +6,7 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>Sign Up</v-toolbar-title>
+                <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
                 <v-form>
@@ -16,7 +16,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="register" color="primary">Register</v-btn>
+                <v-btn @click="login" color="primary">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -41,7 +41,7 @@ export default {
     async register () {
       // call register fct on AS object. Then wait for response and store it
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })

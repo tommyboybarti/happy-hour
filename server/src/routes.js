@@ -7,4 +7,7 @@ module.exports = (app) => {
   // calling middelware functions
     AuthenticationControllerPolicy.register,
     AuthenticationController.register)
+
+  app.post('/login',
+    AuthenticationController.login)
 }

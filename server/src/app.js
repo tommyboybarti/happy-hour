@@ -1,6 +1,5 @@
 // Serverside
-
-console.log('hello')
+console.log('This message comes from app.js')
 // grab the main file of every dependency
 const express = require('express')
 const bodyParser = require('body-parser')

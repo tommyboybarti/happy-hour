@@ -14,6 +14,46 @@ module.exports = {
         error: 'This email is already in use'
       })
     }
-  }
+  },
+  async login (req, res) {
+    try {
+      const {email, password} = req.body
+      const user = await User.findOne({
+        where: {
+          email: email
+        }
+      })
+      // Debugging: check if there is a user registered
+      console.log('user', user.toJSON())
+
+      if (!user) {
+        res.status(403).send({
+          error: 'The login information was incorrect'
+        })
+      }
+      const isPasswordValid = password === user.password
+      // Debugging: 
+      console.log(email, user.email)
+      console.log(password, user.password)
+      console.log(isPasswordValid) 
+      if (!isPasswordValid) {
+        return res.status(403).send({
+          error: 'The login information was incorrect'
+        })        
+      }
+      
+      const userJson = user.toJSON()
+      res.send({
+        user: userJSON
+      })
+      
+      // Debugging..
+      console.log('user', 'userJson')
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occurred trying to login in'
+      })
+    }
+  },    
 }
 

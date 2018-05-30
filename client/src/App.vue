@@ -1,15 +1,13 @@
 <template>
-  <div id="app">
-    <v-app>
-      <main>
-        <page-header/>
+  <v-app>
+    <page-header/>
+      <v-content>
         <v-container>
           <router-view/>
         </v-container>
-      </main>
-        <page-footer/>
-    </v-app>
-  </div>
+      </v-content>
+    <page-footer/>
+  </v-app>
 </template>
 
 <script>
