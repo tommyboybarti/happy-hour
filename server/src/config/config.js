@@ -10,8 +10,8 @@ module.exports = {
       // tell seq what kind of db you are connecting to -> sqlite is a local SQL db
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
-      // where to store the db
-      storage: '/.happy-hour.sqlite',
+      // where to store the db CHECK THE DAMN FILE PATH!!!
+      storage: './happy-hour.sqlite',
       // getting rid of warning about deprecated String based operators..
       operatorsAliases: false
     }
