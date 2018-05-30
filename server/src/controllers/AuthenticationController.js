@@ -32,6 +32,7 @@ module.exports = {
           email: email
         }
       })
+      
       // Debugging: check if there is a user registered
       console.log('user', user.toJSON())
 
@@ -41,10 +42,12 @@ module.exports = {
         })
       }
       const isPasswordValid = password === user.password
+      
       // Debugging: 
       console.log(email, user.email)
       console.log(password, user.password)
       console.log(isPasswordValid) 
+      
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect'
@@ -56,7 +59,7 @@ module.exports = {
         user: userJson,
         token: jwtSignUser(userJson)
       })
-      
+
       // Debugging..
       // console.log('user', 'userJson')
   } catch (err) {

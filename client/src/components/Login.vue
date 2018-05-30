@@ -1,5 +1,5 @@
 <template>
-  <v-app id="register">
+  <v-app id="login">
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
@@ -10,7 +10,7 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field v-model="email" name="login" label="Email" type="text"></v-text-field>
+                  <v-text-field v-model="email" name="email" label="Email" type="text"></v-text-field>
                   <v-text-field v-model="password" name="password" label="Password" type="password"></v-text-field>
                 </v-form>
               </v-card-text>
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       // call register fct on AS object. Then wait for response and store it
       try {
         await AuthenticationService.login({
