@@ -1,36 +1,30 @@
 <template>
   <div id="app">
-    <router-view/>
+    <v-app>
+      <main>
+        <page-header/>
+        <v-container>
+          <router-view/>
+        </v-container>
+      </main>
+        <page-footer/>
+    </v-app>
   </div>
 </template>
 
 <script>
+import PageHeader from '@/components/Header.vue'
+import PageFooter from '@/components/Footer.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    PageHeader,
+    PageFooter
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
