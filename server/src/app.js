@@ -12,7 +12,7 @@ const config = require('./config/config')
 // allow app to get main functionality
 // create express application
 const app = express()
-app.use(morgan('combined'))
+app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(cors())
 
