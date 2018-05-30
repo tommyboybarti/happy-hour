@@ -6,7 +6,7 @@ const config = require('../config/config')
 
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
-  return jwt.sign(user, config.authentication.jstSecret, {
+  return jwt.sign(user, config.authentication.jwtSecret, {
     expiresIn: ONE_WEEK
   })
 }
@@ -42,11 +42,12 @@ module.exports = {
         })
       }
       const isPasswordValid = password === user.password
-      
+      const isEmailValid = email === user.email
       // Debugging: 
       console.log(email, user.email)
       console.log(password, user.password)
       console.log(isPasswordValid) 
+      console.log(isEmailValid)
       
       if (!isPasswordValid) {
         return res.status(403).send({
@@ -55,10 +56,13 @@ module.exports = {
       }
 
       const userJson = user.toJSON()
-      res.send({
-        user: userJson,
-        token: jwtSignUser(userJson)
-      })
+
+      if (isEmailValid && isPasswordValid) {
+        res.status(200).send({
+          user: userJson,
+          token: jwtSignUser(userJson)
+        })
+      }
 
       // Debugging..
       // console.log('user', 'userJson')
@@ -66,6 +70,7 @@ module.exports = {
       res.status(500).send({
         error: 'An error has occurred trying to login in'
       })
+      console.log(err)
     }
   },    
 }

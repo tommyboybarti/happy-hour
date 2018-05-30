@@ -18,6 +18,7 @@ module.exports = {
   },
   // identification of jwt (tokens)
   authentication: {
+    // secret 
     jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }
