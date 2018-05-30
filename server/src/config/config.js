@@ -15,5 +15,9 @@ module.exports = {
       // getting rid of warning about deprecated String based operators..
       operatorsAliases: false
     }
+  },
+  // identification of jwt (tokens)
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }

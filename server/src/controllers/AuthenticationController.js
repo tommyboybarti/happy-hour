@@ -1,6 +1,15 @@
 // controller folder is to define all the endpoints
 // import User model
 const {User} = require('../models')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
+
+function jwtSignUser (user) {
+  const ONE_WEEK = 60 * 60 * 24 * 7
+  return jwt.sign(user, config.authentication.jstSecret, {
+    expiresIn: ONE_WEEK
+  })
+}
 
 // export all routes that are connected to authentication
 module.exports = {
@@ -41,15 +50,16 @@ module.exports = {
           error: 'The login information was incorrect'
         })        
       }
-      
+
       const userJson = user.toJSON()
       res.send({
-        user: userJSON
+        user: userJson,
+        token: jwtSignUser(userJson)
       })
       
       // Debugging..
-      console.log('user', 'userJson')
-    } catch (err) {
+      // console.log('user', 'userJson')
+  } catch (err) {
       res.status(500).send({
         error: 'An error has occurred trying to login in'
       })
