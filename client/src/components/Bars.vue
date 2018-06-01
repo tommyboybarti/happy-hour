@@ -1,12 +1,14 @@
 <template>
   <panel title="Bars">
-    <div
-      v-for="bar in bars"
-      v-bind:key="bar.title">
-        {{bar.title}}
-        {{bar.happyhour}}
-        {{bar.location}}
-    </div>
+    <v-card-text>
+      <div
+        v-for="bar in bars"
+        v-bind:key="bar.id">
+          {{bar.title}} -
+          {{bar.happyhour}} -
+          {{bar.location}}
+      </div>
+    </v-card-text>
   </panel>
 </template>
 
@@ -23,7 +25,8 @@ export default {
   // await allways goes with async
   async mounted () {
     // do a request to the backend for all the bars
-    this.bars = await BarsService.index()
+    // response.data invokes axios to return the content.
+    this.bars = (await BarsService.index()).data
   },
   components: {
     Panel
