@@ -16,6 +16,7 @@ Vue.use(Vuetify)
 sync(store, router)
 
 // setup for vue to use different modules
+// eslint-disable-next-line
 new Vue({
   el: '#app',
   router,

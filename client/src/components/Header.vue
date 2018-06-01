@@ -5,11 +5,12 @@
         Happy Hour
       </v-btn>
     </v-toolbar-title>
-    <!-- <v-toolbar-items>
-      <v-btn flat dark>
-        Browse
+     <v-btn
+        flat
+        dark
+        to="bars">
+        Browse Bars
       </v-btn>
-    </v-toolbar-items> -->
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <!-- hide navigation depending on state of login -->
@@ -27,6 +28,13 @@
         to="register">
         Sign Up
       </v-btn>
+      <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        flat
+        dark
+        @click="logout">
+        Logout
+      </v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -34,7 +42,15 @@
 <script>
 
 export default {
-
+  methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'home'
+      })
+    }
+  }
 }
 
 </script>
