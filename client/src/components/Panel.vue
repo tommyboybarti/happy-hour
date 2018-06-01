@@ -8,7 +8,7 @@
               <v-toolbar dark color="primary">
                 <v-toolbar-title>{{title}}</v-toolbar-title>
               </v-toolbar>
-              <slot>
+              <slot class="pa-1">
                 No slot content defined
               </slot>
             </v-card>

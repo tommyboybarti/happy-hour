@@ -1,6 +1,15 @@
 <template>
   <panel title="Bars">
     <v-card-text>
+      <v-btn
+        to="bars/addbar"
+        class="cyan"
+        medium
+        absolute
+        right
+        fab>
+        <v-icon>add</v-icon>
+      </v-btn>
       <div
         v-for="bar in bars"
         v-bind:key="bar.id">
