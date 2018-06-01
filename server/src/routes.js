@@ -1,5 +1,6 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
+const BarsController = require('./controllers/BarsController')
 
 module.exports = (app) => {
   // defining a route in express by setting a http request (post command) to a register endpoint (or controller in this case)
@@ -10,4 +11,10 @@ module.exports = (app) => {
   // adding a login endpoint which calls the AC login method
   app.post('/login',
     AuthenticationController.login)
+
+  app.get('/bars',
+    BarsController.index)
+
+  app.post('/bars',
+    BarsController.post)
 }
