@@ -32,12 +32,12 @@ export default new Router({
       name: 'bars',
       component: Bars
     },
-    { path: 'addbar',
+    { path: '/addbar',
       name: 'addBar',
       component: AddBar
     },
     {
-      path: ':id',
+      path: '/bars/:id',
       name: 'barId',
       component: ViewBar
     }

@@ -14,7 +14,6 @@
         class="bar"
         v-for="bar in bars"
         v-bind:key="bar.id">
-
         <div class="bar-title">
           {{bar.title}}
         </div>
@@ -24,8 +23,12 @@
         <div class="bar-location">
           {{bar.location}}
         </div>
+        <!-- this button is freaking sweet -->
         <v-btn
-          :to="{name: 'barId'}"
+          :to="{
+            name: 'barId',
+            params: { id: bar.id
+            }}"
           color="primary">
           View venue
         </v-btn>
