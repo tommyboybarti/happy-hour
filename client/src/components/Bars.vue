@@ -2,7 +2,7 @@
   <panel title="Bars">
     <v-card-text>
       <v-btn
-        to="bars/addbar"
+        :to="{name: 'addBar'}"
         class="cyan"
         medium
         absolute
@@ -11,11 +11,24 @@
         <v-icon>add</v-icon>
       </v-btn>
       <div
+        class="bar"
         v-for="bar in bars"
         v-bind:key="bar.id">
-          {{bar.title}} -
-          {{bar.happyhour}} -
+
+        <div class="bar-title">
+          {{bar.title}}
+        </div>
+        <div class="bar-happyhour">
+          {{bar.happyhour}}
+        </div>
+        <div class="bar-location">
           {{bar.location}}
+        </div>
+        <v-btn
+          :to="{name: 'barId'}"
+          color="primary">
+          View venue
+        </v-btn>
       </div>
     </v-card-text>
   </panel>
@@ -45,5 +58,18 @@ export default {
 </script>
 
 <style scoped>
-
+.bar {
+  padding: 20px;
+  height: 180px;
+  overflow: hidden;
+}
+.bar-title {
+  font-size: 30px;
+}
+.bar-happyhour {
+  font-size: 24px;
+}
+.bar-location {
+  font-size: 18px;
+}
 </style>

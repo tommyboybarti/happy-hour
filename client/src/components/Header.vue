@@ -1,14 +1,14 @@
 <template>
   <v-toolbar fixed dark class="primary" app>
     <v-toolbar-title class="mr-4">
-      <v-btn light class="home" to="/">
+      <v-btn light class="home" :to="{name: 'home'}">
         Happy Hour
       </v-btn>
     </v-toolbar-title>
      <v-btn
         flat
         dark
-        to="bars">
+        :to="{name: 'bars'}">
         Browse Bars
       </v-btn>
     <v-spacer></v-spacer>
@@ -18,14 +18,14 @@
         v-if="!$store.state.isUserLoggedIn"
         flat
         dark
-        to="login">
+        :to="{name: 'login'}">
         Login
       </v-btn>
       <v-btn
         v-if="!$store.state.isUserLoggedIn"
         flat
         dark
-        to="register">
+        :to="{name: 'register'}">
         Sign Up
       </v-btn>
       <v-btn

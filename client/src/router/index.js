@@ -5,6 +5,7 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Bars from '@/components/Bars'
 import AddBar from '@/components/AddBar'
+import ViewBar from '@/components/ViewBar'
 
 Vue.use(Router)
 
@@ -31,10 +32,14 @@ export default new Router({
       name: 'bars',
       component: Bars
     },
-    {
-      path: '/bars/addbar',
+    { path: 'addbar',
       name: 'addBar',
       component: AddBar
+    },
+    {
+      path: ':id',
+      name: 'barId',
+      component: ViewBar
     }
   ]
 })
