@@ -27,7 +27,7 @@
         <v-btn
           :to="{
             name: 'barId',
-            params: { id: bar.id
+            params: { barId: bar.id
             }}"
           color="primary">
           View venue

@@ -14,7 +14,8 @@ module.exports = (app) => {
 
   app.get('/bars',
     BarsController.index)
-
+  app.get('/bars/:barId',
+    BarsController.show)
   app.post('/bars',
     BarsController.post)
 }

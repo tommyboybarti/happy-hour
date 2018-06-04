@@ -6,6 +6,9 @@ export default {
   index () {
     return Api().get('bars')
   },
+  show (barId) {
+    return Api().get(`bars/${barId}`)
+  },
   // pass the bars data created by the user to the db
   post (bar) {
     return Api().post('bars', bar)

@@ -37,7 +37,7 @@ export default new Router({
       component: AddBar
     },
     {
-      path: '/bars/:id',
+      path: '/bars/:barId',
       name: 'barId',
       component: ViewBar
     }
