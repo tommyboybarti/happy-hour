@@ -1,5 +1,5 @@
 <template>
-  <panel title="Login">
+  <form-panel title="Login">
     <v-card-text>
       <v-form>
         <v-text-field v-model="email" name="email" label="Email" type="text"></v-text-field>
@@ -10,12 +10,12 @@
       <v-spacer></v-spacer>
       <v-btn @click="login" color="primary">Login</v-btn>
     </v-card-actions>
-  </panel>
+  </form-panel>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
+import FormPanel from '@/templates/FormPanel'
 
 export default {
   data () {
@@ -36,6 +36,7 @@ export default {
         // setting tokens and users depending on responses from server
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({name: 'home'})
       } catch (error) {
         // axios returns error.repsonse.data and then we add .error (a message)
         this.error = error.response.data.error
@@ -43,7 +44,7 @@ export default {
     }
   },
   components: {
-    Panel
+    FormPanel
   }
 }
 </script>

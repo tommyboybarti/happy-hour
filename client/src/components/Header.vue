@@ -1,8 +1,12 @@
 <template>
-  <v-toolbar fixed dark class="primary" app>
+  <v-toolbar elevation-25 fixed dark class="primary" app>
     <v-toolbar-title class="mr-4">
-      <v-btn light class="home" :to="{name: 'home'}">
-        Happy Hour
+      <v-btn
+        round
+        color="secondary"
+        class="home"
+        :to="{name: 'home'}">
+        Home
       </v-btn>
     </v-toolbar-title>
      <v-btn
@@ -60,7 +64,7 @@ export default {
   cursor: pointer;
 }
 .home:hover {
-  color:darkgray;
+  color: darkgray;
 }
 
 </style>

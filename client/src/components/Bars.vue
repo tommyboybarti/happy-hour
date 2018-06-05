@@ -3,17 +3,22 @@
     <v-card-text>
       <v-btn
         :to="{name: 'addBar'}"
-        class="cyan"
+        class="accent"
         medium
-        absolute
+        top
         right
-        fab>
+        absolute
+        fab
+        elevation-0
+        v-if="$store.state.isUserLoggedIn"
+        >
         <v-icon>add</v-icon>
       </v-btn>
       <div
         class="bar"
         v-for="bar in bars"
-        v-bind:key="bar.id">
+        v-bind:key="bar.id"
+        >
         <div class="bar-title">
           {{bar.title}}
         </div>
@@ -29,7 +34,7 @@
             name: 'barId',
             params: { barId: bar.id
             }}"
-          color="primary">
+          color="secondary">
           View venue
         </v-btn>
       </div>
@@ -38,7 +43,7 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import Panel from '@/templates/Panel'
 import BarsService from '@/services/BarsService'
 
 export default {
@@ -67,12 +72,12 @@ export default {
   overflow: hidden;
 }
 .bar-title {
-  font-size: 30px;
+  font-size: 20px;
 }
 .bar-happyhour {
-  font-size: 24px;
+  font-size: 18px;
 }
 .bar-location {
-  font-size: 18px;
+  font-size: 14px;
 }
 </style>

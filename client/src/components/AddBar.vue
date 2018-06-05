@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <panel title="Bar Metadata">
+      <panel title="Please enter your information">
         <v-text-field
           label="Title"
           required
@@ -23,34 +23,34 @@
       </panel>
     </v-flex>
     <v-flex>
-      <panel title="What are they offering?">
+      <panel title="What's the offering?">
         <v-text-field
           label="Offering"
           required
           :rules="[required]"
           v-model="bar.offering">
         </v-text-field>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-alert
+            class="ml-4"
+            :value="error"
+            transition="scale-transition"
+            error>
+            {{error}}
+          </v-alert>
+          <v-btn
+            @click="addbar"
+            color="primary">Add venue
+          </v-btn>
+        </v-card-actions>
       </panel>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-alert
-          class="ml-4"
-          :value="error"
-          transition="scale-transition"
-          error>
-          {{error}}
-        </v-alert>
-        <v-btn
-          @click="addbar"
-          color="primary">Add venue
-        </v-btn>
-      </v-card-actions>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import Panel from '@/templates/Panel'
 import BarsService from '@/services/BarsService'
 
 export default {

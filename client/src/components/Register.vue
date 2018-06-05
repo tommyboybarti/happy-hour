@@ -1,5 +1,5 @@
 <template>
-  <panel title="Register">
+  <form-panel title="Register">
     <v-card-text>
       <v-form>
         <v-text-field v-model="email" name="email" label="Email" type="text"></v-text-field>
@@ -10,12 +10,12 @@
       <v-spacer></v-spacer>
       <v-btn @click="register" color="primary">Register</v-btn>
     </v-card-actions>
-  </panel>
+  </form-panel>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
+import FormPanel from '@/templates/FormPanel'
 
 export default {
   data () {
@@ -42,7 +42,7 @@ export default {
     }
   },
   components: {
-    Panel
+    FormPanel
   }
 }
 </script>

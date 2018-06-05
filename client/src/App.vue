@@ -1,24 +1,24 @@
 <template>
   <v-app>
-    <page-header/>
+    <v-header></v-header>
       <v-content>
         <v-container>
           <router-view/>
         </v-container>
       </v-content>
-    <page-footer/>
+    <v-footer></v-footer>/>
   </v-app>
 </template>
 
 <script>
-import PageHeader from '@/components/Header.vue'
-import PageFooter from '@/components/Footer.vue'
+import VHeader from '@/components/Header.vue'
+import VFooter from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    PageHeader,
-    PageFooter
+    VHeader,
+    VFooter
   }
 }
 </script>
