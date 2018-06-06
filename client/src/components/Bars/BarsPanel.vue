@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-btn
       :to="{name: 'addBar'}"
       class="accent button"
@@ -11,31 +11,27 @@
       >
       <v-icon>add</v-icon>
     </v-btn>
-    <v-layout row justify-center>
-      <v-flex xs6>
-        <panel title="Bars">
-          <v-card>
-            <v-layout row>
-            <v-flex xs6>
-                <div
-                  class="bar"
-                  v-for="bar in bars"
-                  v-bind:key="bar.id"
-                  >
-                  <div class="bar-title">
-                    {{bar.title}}
-                  </div>
-                  <div class="bar-happyhour">
-                    {{bar.happyhour}}
-                  </div>
-                  <div class="bar-location">
-                    {{bar.location}}
-                  </div>
-                </div>
+      <panel title="Bars">
+        <div
+          class="bar"
+          v-for="bar in bars"
+          v-bind:key="bar.id"
+          >
+          <v-layout>
+            <v-flex>
+              <div class="bar-title">
+                {{bar.title}}
+              </div>
+              <div class="bar-happyhour">
+                {{bar.happyhour}}
+              </div>
+              <div class="bar-location">
+                {{bar.location}}
+              </div>
             </v-flex>
-            <v-flex xs6>
-              <!-- this button is freaking sweet -->
-              <v-btn
+            <v-flex>
+        <!-- this button is freaking sweet -->
+                <v-btn
                 :to="{
                   name: 'barId',
                   params: { barId: bar.id
@@ -45,11 +41,9 @@
               </v-btn>
             </v-flex>
           </v-layout>
-              </v-card>
-        </panel>
-      </v-flex>
-    </v-layout>
-  </div>
+        </div>
+      </panel>
+  </v-container>
 </template>
 
 <script>

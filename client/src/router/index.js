@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import Bars from '@/components/Bars'
+import Bars from '@/components/Bars/BarsIndex'
 import AddBar from '@/components/AddBar'
 import ViewBar from '@/components/ViewBar/BarIndex'
 

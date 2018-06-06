@@ -44,11 +44,16 @@
       </v-alert>
       <v-btn
         @click="addbar"
-        color="primary">Add venue
+        color="accent">Add venue
       </v-btn>
     </v-card-actions>
       </v-card-text>
   </panel>
+  </v-flex>
+  <v-flex>
+    <panel title="Location on Google Maps - Search and save address">
+      <search-google-map />
+    </panel>
   </v-flex>
 </v-layout>
 </template>
@@ -56,6 +61,7 @@
 <script>
 import Panel from '@/templates/Panel'
 import BarsService from '@/services/BarsService'
+import SearchGoogleMap from '@/templates/SearchGoogleMap'
 
 export default {
   data () {
@@ -93,7 +99,8 @@ export default {
     }
   },
   components: {
-    Panel
+    Panel,
+    SearchGoogleMap
   }
 }
 
