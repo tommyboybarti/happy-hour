@@ -1,14 +1,14 @@
 <template>
-  <v-container fluid fill-height>
-    <v-layout justify-center>
-      <v-flex xs-6>
-        <v-toolbar dark color="primary">
-          <v-toolbar-title>{{title}}</v-toolbar-title>
-        </v-toolbar>
-          <v-card>
-            <slot>
-            </slot>
-          </v-card>
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
+      <v-flex>
+        <v-card>
+          <v-toolbar dark color="primary">
+            <v-toolbar-title>{{title}}</v-toolbar-title>
+          </v-toolbar>
+          <slot class="pa-2">
+          </slot>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>

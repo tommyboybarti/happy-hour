@@ -22,6 +22,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.toolbar-title {
+  margin-top: 100px;
+}
 </style>

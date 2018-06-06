@@ -1,20 +1,15 @@
 <template>
-  <v-content>
-    <v-container fluid fill-height>
-    <!-- <v-parallax src="../assets/jakub-dziubak-262303-unsplash.jpg"> -->
-      <v-layout
-      justify-center
-      align-center
-      >
-        <v-flex text-xs-center>
-          <h1>This app makes you drink for cheap</h1>
-          <v-card-media src="@/jakub-dziubak-262303-unsplash.jpg">
-          </v-card-media>
-        </v-flex>
-      </v-layout>
-    <!-- </v-parallax> -->
-    </v-container>
-  </v-content>
+  <v-card>
+    <v-card-media height="800px" class="white--text" :src="require('@/assets/stephan-valentin-259614-unsplash.jpg')">
+      <v-container fill-height>
+        <v-layout>
+          <v-flex class="pt-5" offset-xs6>
+            <h1>This app makes you drink for cheap</h1>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card-media>
+  </v-card>
 </template>
 
 <script>

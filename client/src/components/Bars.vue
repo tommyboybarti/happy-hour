@@ -1,45 +1,49 @@
 <template>
-  <panel title="Bars">
-    <v-card-text>
-      <v-btn
-        :to="{name: 'addBar'}"
-        class="accent"
-        medium
-        top
-        right
-        absolute
-        fab
-        elevation-0
-        v-if="$store.state.isUserLoggedIn"
-        >
-        <v-icon>add</v-icon>
-      </v-btn>
-      <div
-        class="bar"
-        v-for="bar in bars"
-        v-bind:key="bar.id"
-        >
-        <div class="bar-title">
-          {{bar.title}}
-        </div>
-        <div class="bar-happyhour">
-          {{bar.happyhour}}
-        </div>
-        <div class="bar-location">
-          {{bar.location}}
-        </div>
-        <!-- this button is freaking sweet -->
-        <v-btn
-          :to="{
-            name: 'barId',
-            params: { barId: bar.id
-            }}"
-          color="secondary">
-          View venue
-        </v-btn>
-      </div>
-    </v-card-text>
-  </panel>
+  <div>
+    <v-btn
+      :to="{name: 'addBar'}"
+      class="accent button"
+      medium
+      fixed
+      right
+      fab
+      v-if="$store.state.isUserLoggedIn"
+      >
+      <v-icon>add</v-icon>
+    </v-btn>
+    <v-layout row justify-center>
+      <v-flex xs6>
+        <panel title="Bars">
+          <v-card-text>
+            <div
+              class="bar"
+              v-for="bar in bars"
+              v-bind:key="bar.id"
+              >
+              <div class="bar-title">
+                {{bar.title}}
+              </div>
+              <div class="bar-happyhour">
+                {{bar.happyhour}}
+              </div>
+              <div class="bar-location">
+                {{bar.location}}
+              </div>
+              <!-- this button is freaking sweet -->
+              <v-btn
+                :to="{
+                  name: 'barId',
+                  params: { barId: bar.id
+                  }}"
+                color="secondary">
+                View venue
+              </v-btn>
+            </div>
+          </v-card-text>
+        </panel>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
@@ -67,7 +71,7 @@ export default {
 
 <style scoped>
 .bar {
-  padding: 20px;
+  padding: 10px;
   height: 180px;
   overflow: hidden;
 }
@@ -79,5 +83,8 @@ export default {
 }
 .bar-location {
   font-size: 14px;
+}
+.button {
+  margin-top: 10px;
 }
 </style>
