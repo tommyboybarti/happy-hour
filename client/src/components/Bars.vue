@@ -14,21 +14,26 @@
     <v-layout row justify-center>
       <v-flex xs6>
         <panel title="Bars">
-          <v-card-text>
-            <div
-              class="bar"
-              v-for="bar in bars"
-              v-bind:key="bar.id"
-              >
-              <div class="bar-title">
-                {{bar.title}}
-              </div>
-              <div class="bar-happyhour">
-                {{bar.happyhour}}
-              </div>
-              <div class="bar-location">
-                {{bar.location}}
-              </div>
+          <v-card>
+            <v-layout row>
+            <v-flex xs6>
+                <div
+                  class="bar"
+                  v-for="bar in bars"
+                  v-bind:key="bar.id"
+                  >
+                  <div class="bar-title">
+                    {{bar.title}}
+                  </div>
+                  <div class="bar-happyhour">
+                    {{bar.happyhour}}
+                  </div>
+                  <div class="bar-location">
+                    {{bar.location}}
+                  </div>
+                </div>
+            </v-flex>
+            <v-flex xs6>
               <!-- this button is freaking sweet -->
               <v-btn
                 :to="{
@@ -38,8 +43,9 @@
                 color="secondary">
                 View venue
               </v-btn>
-            </div>
-          </v-card-text>
+            </v-flex>
+          </v-layout>
+              </v-card>
         </panel>
       </v-flex>
     </v-layout>

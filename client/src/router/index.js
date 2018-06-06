@@ -5,7 +5,7 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Bars from '@/components/Bars'
 import AddBar from '@/components/AddBar'
-import ViewBar from '@/components/ViewBar'
+import ViewBar from '@/components/ViewBar/BarIndex'
 
 Vue.use(Router)
 

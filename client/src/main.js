@@ -7,6 +7,7 @@ import 'vuetify/dist/vuetify.min.css'
 import {sync} from 'vuex-router-sync'
 import Vuetify from 'vuetify'
 import store from '@/store/store'
+// import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.config.productionTip = false
 
@@ -20,6 +21,8 @@ Vue.use(Vuetify, {
     info: '#2196f3',
     success: '#4caf50'
   }
+  // ,
+  // AIzaSyBO1fhDIQu3jQ7fmLhqcTd-KxImigBBM5s
 })
 
 // vue-router-sync syncs the store to the router. duh!
