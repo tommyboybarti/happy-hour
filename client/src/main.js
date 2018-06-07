@@ -8,8 +8,11 @@ import {sync} from 'vuex-router-sync'
 import Vuetify from 'vuetify'
 import store from '@/store/store'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import Panel from '@/templates/Panel'
 
 Vue.config.productionTip = false
+
+Vue.component('panel', Panel)
 
 Vue.use(Vuetify, {
   theme: {

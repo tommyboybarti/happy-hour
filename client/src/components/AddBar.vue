@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import Panel from '@/templates/Panel'
 import BarsService from '@/services/BarsService'
 import SearchGoogleMap from '@/templates/SearchGoogleMap'
 
@@ -99,7 +98,6 @@ export default {
     }
   },
   components: {
-    Panel,
     SearchGoogleMap
   }
 }

@@ -10,16 +10,12 @@
 </template>
 
 <script>
-import Panel from '@/templates/Panel'
 
 export default {
   // pass down bar metadata
   props: [
     'bar'
-  ],
-  components: {
-    Panel
-  }
+  ]
 }
 
 </script>

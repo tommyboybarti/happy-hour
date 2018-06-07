@@ -40,7 +40,6 @@
 
 <script>
 import BarsService from '@/services/BarsService'
-import Panel from '@/templates/Panel'
 import BarData from './BarData'
 
 export default {
@@ -57,7 +56,6 @@ export default {
     console.log(this.bar)
   },
   components: {
-    Panel,
     BarData
   }
 }

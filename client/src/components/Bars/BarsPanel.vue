@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-btn
       :to="{name: 'addBar'}"
       class="accent button"
@@ -43,11 +43,10 @@
           </v-layout>
         </div>
       </panel>
-  </v-container>
+  </div>
 </template>
 
 <script>
-import Panel from '@/templates/Panel'
 import BarsService from '@/services/BarsService'
 
 export default {
@@ -56,14 +55,16 @@ export default {
       bars: null
     }
   },
-  // await allways goes with async
-  async mounted () {
-    // do a request to the backend for all the bars
-    // response.data invokes axios to return the content.
-    this.bars = (await BarsService.index()).data
-  },
-  components: {
-    Panel
+  watch: {
+    // listen to changes in query string
+    '$route.query.search': {
+      // as soon as comp has a value defined invoke a handler
+      immediate: true,
+      async handler (value) {
+        // do a request to the backend for all the bars
+        this.bars = (await BarsService.index(value)).data
+      }
+    }
   }
 }
 

@@ -1,27 +1,18 @@
 <template>
-  <!-- <v-container>
-    <v-btn
-      :to="{name: 'addBar'}"
-      class="accent button"
-      medium
-      fixed
-      right
-      fab
-      v-if="$store.state.isUserLoggedIn"
-      >
-      <v-icon>add</v-icon>
-    </v-btn> -->
+  <v-container>
     <v-layout column>
       <v-flex xs6>
+        <bars-search-panel />
         <bars-panel />
       </v-flex>
     </v-layout>
-  <!-- </v-container> -->
+  </v-container>
 </template>
 
 <script>
 import BarsPanel from './BarsPanel'
 import BarsService from '@/services/BarsService'
+import BarsSearchPanel from './BarsSearchPanel'
 
 export default {
   data () {
@@ -36,28 +27,13 @@ export default {
     this.bars = (await BarsService.index()).data
   },
   components: {
-    BarsPanel
+    BarsPanel,
+    BarsSearchPanel
   }
 }
 
 </script>
 
 <style scoped>
-.bar {
-  padding: 10px;
-  height: 180px;
-  overflow: hidden;
-}
-.bar-title {
-  font-size: 20px;
-}
-.bar-happyhour {
-  font-size: 18px;
-}
-.bar-location {
-  font-size: 14px;
-}
-.button {
-  margin-top: 10px;
-}
+
 </style>

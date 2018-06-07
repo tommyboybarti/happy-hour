@@ -14,7 +14,7 @@
     <v-flex d-flex xs12 sm12>
     <gmap-map
       :center="center"
-      :zoom="8"
+      :zoom="15"
       style="width:80%;  height: 400px;"
     >
       <gmap-marker
@@ -36,7 +36,7 @@ export default {
     return {
       // default to Calgary to keep it simple
       // change this to whatever makes sense
-      center: { lat: 51.0486, lng: 114.0708 },
+      center: { lat: 51.0486, lng: -114.0708 },
       markers: [],
       places: [],
       currentPlace: null

@@ -6,8 +6,10 @@
           <v-toolbar dark color="primary">
             <v-toolbar-title>{{title}}</v-toolbar-title>
           </v-toolbar>
-          <slot class="pa-2">
-          </slot>
+          <div class="pl-4 pr-4 pt-2 pb-2">
+            <slot>
+            </slot>
+          </div>
         </v-card>
       </v-flex>
     </v-layout>
