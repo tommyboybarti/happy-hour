@@ -1,3 +1,5 @@
+const path = require('path')
+
 // config that sets the port and an attribute db that contains all the seq related configurations
 module.exports = {
   port: process.env.PORT || 8081,
@@ -11,7 +13,7 @@ module.exports = {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
       // where to store the db CHECK THE DAMN FILE PATH!!!
-      storage: './happy-hour.sqlite',
+      storage: path.resolve(__dirname, '../../happy-hour.sqlite'),
       // getting rid of warning about deprecated String based operators..
       operatorsAliases: false
     }

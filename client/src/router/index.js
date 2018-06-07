@@ -46,6 +46,10 @@ export default new Router({
       path: '/bars/:barId/edit',
       name: 'editBar',
       component: EditBar
+    },
+    {
+      path: '*',
+      redirect: { name: 'bars' }
     }
   ]
 })

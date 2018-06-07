@@ -2,9 +2,11 @@
   <panel title="Bar Metadata">
     <v-card-title>
       {{this.bar.title}}
+      <br>
+      Happyhour: {{this.bar.happyhour}}
     </v-card-title>
     <v-card-text>
-      {{this.bar.happyhour}}
+      {{this.bar.offering}}
     </v-card-text>
     <v-btn
       :to="{
