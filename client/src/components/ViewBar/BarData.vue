@@ -9,9 +9,10 @@
     <v-btn
       :to="{
         name: 'editBar',
-        params: { barId: bar.id
+        params: { editBar: bar.id
         }}"
-      color="secondary">
+      color="secondary"
+      v-if="$store.state.isUserLoggedIn">
       Edit Info
     </v-btn>
   </panel>

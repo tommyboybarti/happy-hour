@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 
 export default {
   data () {
@@ -18,7 +19,7 @@ export default {
   },
   watch: {
     // watching the search value as it changes and do a routerlinkup for being able to bookmark search results
-    search (value) {
+    search: _.debounce(async function (value) {
       const route = {
         name: 'bars'
       }
@@ -29,7 +30,7 @@ export default {
         }
       }
       this.$router.push(route)
-    },
+    }, 700),
     // add a watcher to search query string that changes the search box content
     '$route.query.search': {
       immediate: true,
