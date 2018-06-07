@@ -17,9 +17,8 @@ export default {
   // pass the bars data created by the user to the db
   post (bar) {
     return Api().post('bars', bar)
+  },
+  put (bar) {
+    return Api().put(`bars/${bar.id}`, bar)
   }
-  // ,
-  // put (bar) {
-  //   return Api().put(`bars/${bar.id}`, bar)
-  // }
 }

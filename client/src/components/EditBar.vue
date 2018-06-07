@@ -46,8 +46,9 @@
             {{error}}
           </v-alert>
           <v-btn
-            @click="addbar"
-            color="accent">Add venue
+            @click="save"
+            color="accent">
+            Save changes
           </v-btn>
         </v-card-actions>
       </v-card-text>
@@ -79,7 +80,7 @@ export default {
     }
   },
   methods: {
-    async addbar () {
+    async save () {
       // checking that every single value using a certain key (bar) is defined
       this.error = null
       const areAllFieldsFilledIn = Object
@@ -89,15 +90,28 @@ export default {
         this.error = 'Please fill in all the required fields'
         return
       }
-      // call API
+      // const barId = this.$store.state.route.params.barId
       try {
-        await BarsService.post(this.bar)
-        this.$router.push({
-          name: 'bars'
-        })
+        await BarsService.put(this.bar)
+        // this works as long as the browser keeps a history
+        this.$router.go(-1)
+        // ({
+        //   name: 'bar',
+        //   params: {
+        //     barId: barId
+        //   }
+        // })
       } catch (err) {
         console.log(err)
       }
+    }
+  },
+  async mounted () {
+    try {
+      const barId = this.$store.state.route.params.barId
+      this.bar = (await BarsService.show(barId)).data
+    } catch (err) {
+      console.log(err)
     }
   },
   components: {

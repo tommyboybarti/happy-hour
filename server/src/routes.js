@@ -18,4 +18,6 @@ module.exports = (app) => {
     BarsController.show)
   app.post('/bars',
     BarsController.post)
+  app.put('/bars/:barId',
+    BarsController.put)
 }

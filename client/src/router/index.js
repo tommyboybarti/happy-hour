@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Bars from '@/components/Bars/BarsIndex'
 import AddBar from '@/components/AddBar'
 import ViewBar from '@/components/ViewBar/BarIndex'
+import EditBar from '@/components/EditBar'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/bars/:barId',
       name: 'barId',
       component: ViewBar
+    },
+    {
+      path: '/bars/:barId/edit',
+      name: 'editBar',
+      component: EditBar
     }
   ]
 })

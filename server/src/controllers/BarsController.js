@@ -38,7 +38,7 @@ module.exports = {
       res.send(bar)
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured trying to fetch your request'
+        error: 'An error has occured trying to show your request'
       })
     }
   },
@@ -49,6 +49,20 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured trying to create your content'
+      })
+    }
+  },
+  async put (req, res) {
+    try {
+      await Bar.update(req.body, {
+        where: {
+          id: req.params.barId
+        }
+      })
+      res.send(req.body)
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to update your content'
       })
     }
   }
