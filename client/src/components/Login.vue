@@ -6,6 +6,9 @@
         <v-text-field v-model="password" name="password" label="Password" type="password"></v-text-field>
       </v-form>
     </v-card-text>
+    <v-alert v-if="error" :value="true" outline color="error" icon="warning">
+      {{this.error}}
+    </v-alert>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn @click="login" color="primary">Login</v-btn>
@@ -50,7 +53,4 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.error {
-  color: red
-}
 </style>
