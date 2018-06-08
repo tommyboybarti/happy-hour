@@ -30,6 +30,12 @@ fs.readdirSync(__dirname)
     const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
   })
+
+Object.keys(db).forEach(function (modelName) {
+  if ('associate' in db[modelName]) {
+    db[modelName].associate(db)
+  }
+})
   
   // seq = ORM, create access to Objects by storing them in vars
 db.sequelize = sequelize

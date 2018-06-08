@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const BarsController = require('./controllers/BarsController')
+const BookmarksController = require('./controllers/BookmarksController')
 
 module.exports = (app) => {
   // defining a route in express by setting a http request (post command) to a register endpoint (or controller in this case)
@@ -20,4 +21,7 @@ module.exports = (app) => {
     BarsController.post)
   app.put('/bars/:barId',
     BarsController.put)
+
+  app.get('/bookmarks',
+    BookmarksController.index)
 }
