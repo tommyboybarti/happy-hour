@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     location: DataTypes.STRING,
     offering: DataTypes.TEXT
   })
+
+  Bar.associate = function (models) {
+  }
   
   return Bar
 }
