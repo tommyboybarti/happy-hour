@@ -19,16 +19,16 @@
       Edit Info
     </v-btn>
     <v-btn
-      @click="bookmark"
+      @click="setAsBookmark"
       color="secondary"
-      v-if="isUserLoggedIn && !isBookmarked">
-      Bookmark
+      v-if="isUserLoggedIn && !bookmark">
+      Set as bookmark
     </v-btn>
     <v-btn
-      @click="unbookmark"
+      @click="unsetAsBookmark"
       color="secondary"
-      v-if="isUserLoggedIn && isBookmarked">
-      Unbookmark
+      v-if="isUserLoggedIn && bookmark">
+      Unset as bookmark
     </v-btn>
   </panel>
 </template>
@@ -44,7 +44,7 @@ export default {
   ],
   data () {
     return {
-      isBookmarked: false
+      bookmark: null
     }
   },
   computed: {
@@ -52,35 +52,36 @@ export default {
       'isUserLoggedIn'
     ])
   },
-  async mounted () {
-    try {
-      const bookmark = (await BookmarksService.index({
-        barId: this.bar.id,
-        userId: this.$store.state.user.id
-      })).data
-      // !! cast something to true or false if its defined
-      this.isBookmarked = !!bookmark
-    } catch (err) {
-      console.log(err)
+  watch: {
+    async bar () {
+      if (!this.isUserLoggedIn) {
+        return
+      }
+      try {
+        this.bookmark = (await BookmarksService.index({
+          barId: this.bar.id,
+          userId: this.$store.state.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   methods: {
-    async bookmark () {
+    async setAsBookmark () {
       try {
-        await BookmarksService.post({
+        this.bookmark = (await BookmarksService.post({
           barId: this.bar.id,
           userId: this.$store.state.user.id
-        })
+        })).data
       } catch (err) {
         console.log(err)
       }
     },
-    async unbookmark () {
+    async unsetAsBookmark () {
       try {
-        await BookmarksService.delete({
-          barId: this.bar.id,
-          userId: this.$store.state.user.id
-        })
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
       } catch (err) {
         console.log(err)
       }

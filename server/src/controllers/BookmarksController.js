@@ -20,8 +20,22 @@ module.exports = {
   },
   async post (req, res) {
     try {
-      const bookmark = req.query
-      const newBookmark = await Bookmark.create(bookmark)
+      const {barId, userId} = req.body
+      const bookmark = await Bookmark.findOne({
+        where: {
+          BarId: barId,
+          UserId: userId
+        }
+      })
+      if (bookmark) {
+        return res.status(400).send({
+          error: 'You have already set a bookmark'
+        })
+      }
+      const newBookmark = await Bookmark.create({
+        BarId: barId,
+        UserId: userId
+      })
       res.send(newBookmark)
     } catch (err) {
       res.status(500).send({
