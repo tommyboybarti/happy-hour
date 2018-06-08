@@ -7,8 +7,10 @@ const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     try {
-      // const userId = req.user.id
-      const {barId, userId} = req.query
+      // info coming from jwt token
+      const userId = req.user.id
+      // this one comes from the query string
+      const {barId} = req.query
       const where = {
         UserId: userId
       }

@@ -15,6 +15,8 @@ app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(cors())
 
+require('./passport')
+
 require('./routes')(app)
 // synching sequelize to the DB
 sequelize.sync({force: false})
