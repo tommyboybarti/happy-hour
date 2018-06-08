@@ -23,7 +23,7 @@ sequelize.sync({force: true})
         Bar.create(bar)
       })
     )
-    // this needs to come after user & songs, coz they need to exist for the association
+    // this needs to come after user & bars, coz they need to exist for the association
     await Promise.all(
       bookmarks.map(bookmark => {
         Bookmark.create(bookmark)

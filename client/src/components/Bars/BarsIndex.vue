@@ -1,6 +1,9 @@
 <template>
   <v-container>
-    <v-layout column>
+    <v-layout>
+      <v-flex xs6>
+        <bars-bookmarks />
+      </v-flex>
       <v-flex xs6>
         <bars-search-panel />
         <bars-panel />
@@ -13,6 +16,7 @@
 import BarsPanel from './BarsPanel'
 import BarsService from '@/services/BarsService'
 import BarsSearchPanel from './BarsSearchPanel'
+import BarsBookmarks from './BarsBookmarks'
 
 export default {
   data () {
@@ -28,7 +32,8 @@ export default {
   },
   components: {
     BarsPanel,
-    BarsSearchPanel
+    BarsSearchPanel,
+    BarsBookmarks
   }
 }
 

@@ -1,17 +1,34 @@
-const {Bookmark} = require('../models')
+const {
+  Bar,
+  Bookmark
+} = require('../models')
+const _ = require('lodash')
 
 module.exports = {
   async index (req, res) {
     try {
+      // const userId = req.user.id
       const {barId, userId} = req.query
-      // find the one bookmark
-      const bookmark = await Bookmark.findOne({
-        where: {
-          BarId: barId,
-          UserId: userId
-        }
-      })
-      res.send(bookmark)
+      const where = {
+        UserId: userId
+      }
+      if (barId) {
+        where.BarId = barId
+      }
+      const bookmarks = await Bookmark.findAll({
+        where: where,
+        include: [
+          {
+            model: Bar
+          }
+        ]
+      }).map(bookmark => bookmark.toJSON())
+        .map(bookmark => _.extend(
+          {},
+          bookmark.Bar,
+          bookmark
+        ))
+      res.send(bookmarks)
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured trying to fetch your bookmark'
@@ -20,6 +37,7 @@ module.exports = {
   },
   async post (req, res) {
     try {
+      // const userId = req.user.id
       const {barId, userId} = req.body
       const bookmark = await Bookmark.findOne({
         where: {
