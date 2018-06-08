@@ -60,8 +60,7 @@ export default {
       }
       try {
         const bookmarks = (await BookmarksService.index({
-          barId: this.bar.id,
-          userId: this.user.id
+          barId: this.bar.id
         })).data
         if (bookmarks.length) {
           this.bookmark = bookmarks[0]
@@ -75,8 +74,7 @@ export default {
     async setAsBookmark () {
       try {
         this.bookmark = (await BookmarksService.post({
-          barId: this.bar.id,
-          userId: this.user.id
+          barId: this.bar.id
         })).data
       } catch (err) {
         console.log(err)
