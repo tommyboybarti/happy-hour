@@ -1,34 +1,25 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex d-flex sm6 md6 lg6 xl6>
-        <panel title="Enter your information">
-          <v-card-text>
-          <v-text-field
-            label="Name"
-            required
-            :rules="[required]"
-            v-model="bar.title">
-          </v-text-field>
-
-          <v-text-field
-            label="Happy Hour Times"
-            required
-            :rules="[required]"
-            v-model="bar.happyhour">
-          </v-text-field>
-
-          <v-text-field
-            label="Address"
-            required
-            :rules="[required]"
-            v-model="bar.location">
-          </v-text-field>
-
-          </v-card-text>
+      <v-flex sm12 md12 lg12 xl12>
+        <panel title="Location on Google Maps - Search a venue">
+          <search-google-map v-on:changeTitle="updateVenue($event)"/>
         </panel>
       </v-flex>
-      <v-flex d-flex sm6 md6 lg6 xl6>
+      <v-flex d-flex>
+        <panel title="Contact Information" :venue="venue">
+          <v-card-text>
+             {{ venue.name }}
+             <br>
+             {{ venue.formatted_address }}
+             <br>
+             {{ venue.formatted_phone_number }}
+             <br>
+             {{ venue.rating }}
+             <br>
+             {{ venue.website }}
+          </v-card-text>
+        </panel>
         <panel title="Offering">
           <v-card-text>
             <v-text-field
@@ -54,11 +45,6 @@
           </v-card-text>
         </panel>
       </v-flex>
-      <v-flex>
-        <panel title="Location on Google Maps - Search and save address">
-          <search-google-map />
-        </panel>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -70,6 +56,15 @@ import SearchGoogleMap from '@/templates/SearchGoogleMap'
 export default {
   data () {
     return {
+      venue: {
+        name: 'Name of bar',
+        formatted_address: 'Address of bar',
+        formatted_phone_number: 'Phone number',
+        rating: 'Rating:',
+        website: 'Website'
+        // opening_hours: {
+        //   weekday_text: 'opening hours'
+      },
       bar: {
         title: null,
         happyhour: null,
@@ -100,6 +95,9 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    updateVenue: function (updatedTitle) {
+      this.venue = updatedTitle
     }
   },
   components: {

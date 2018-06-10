@@ -9,14 +9,14 @@
         <v-btn
         @click="addMarker"
         color="primary"
-        >Set marker
+        >Search and save address
         </v-btn>
       </v-flex>
       <v-flex d-flex xs12>
       <gmap-map
         :center="center"
         :zoom="15"
-        style="width:80%;  height: 320px;"
+        style="width:80%;  height: 400px;"
       >
         <gmap-marker
           :key="index"
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'SearchGoogleMap',
+  name: 'ShowGoogleMap',
   data () {
     return {
       // default to Calgary to keep it simple
@@ -52,8 +52,6 @@ export default {
     // receives a place object via the autocomplete component
     setPlace (place) {
       this.currentPlace = place
-      // manual addition
-      this.$emit('changeTitle', this.currentPlace)
     },
     addMarker () {
       if (this.currentPlace) {
