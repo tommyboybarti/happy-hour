@@ -4,36 +4,6 @@
     <v-flex xs6>
       <bar-data :bar="bar" />
     </v-flex>
-    <!--
-      <v-flex xs6>
-      <google-map />
-      </v-flex>
-      <v-flex xs6>
-      <panel title="Offering">
-        <v-card-text>
-          {{this.bar.offering}}
-        </v-card-text>
-      </panel>
-    </v-flex>
-  </v-layout>
-    <v-layout>
-    <v-flex xs6>
-    <panel title="Location">
-      <v-card-title>
-        {{this.bar.title}}
-      </v-card-title>
-      <v-card-text>
-        {{this.bar.happyhour}}
-      </v-card-text>
-    </panel>
-    </v-flex>
-    <v-flex xs6>
-      <panel title="Offering">
-        <v-card-text>
-          {{this.bar.offering}}
-        </v-card-text>
-      </panel>
-    </v-flex> -->
   </v-layout>
 </v-container>
 </template>

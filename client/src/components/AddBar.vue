@@ -1,64 +1,66 @@
 <template>
-<v-layout row wrap>
-  <v-flex d-flex sm6 md6 lg6 xl6>
-    <panel title="Please enter your information">
-      <v-card-text>
-      <v-text-field
-        label="Title"
-        required
-        :rules="[required]"
-        v-model="bar.title">
-      </v-text-field>
+  <v-container>
+    <v-layout row wrap>
+      <v-flex d-flex sm6 md6 lg6 xl6>
+        <panel title="Enter your information">
+          <v-card-text>
+          <v-text-field
+            label="Name"
+            required
+            :rules="[required]"
+            v-model="bar.title">
+          </v-text-field>
 
-      <v-text-field
-        label="Happy Hour Times"
-        required
-        :rules="[required]"
-        v-model="bar.happyhour">
-      </v-text-field>
+          <v-text-field
+            label="Happy Hour Times"
+            required
+            :rules="[required]"
+            v-model="bar.happyhour">
+          </v-text-field>
 
-      <v-text-field
-        label="Address"
-        required
-        :rules="[required]"
-        v-model="bar.location">
-      </v-text-field>
+          <v-text-field
+            label="Address"
+            required
+            :rules="[required]"
+            v-model="bar.location">
+          </v-text-field>
 
-      </v-card-text>
-    </panel>
-  </v-flex>
-  <v-flex d-flex sm6 md6 lg6 xl6>
-    <panel title="Offering">
-      <v-card-text>
-        <v-text-field
-          label="Offering"
-          required
-          :rules="[required]"
-          v-model="bar.offering">
-        </v-text-field>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-alert
-            class="ml-4"
-            :value="error"
-            transition="scale-transition"
-            error>
-            {{error}}
-          </v-alert>
-          <v-btn
-            @click="addbar"
-            color="accent">Add venue
-          </v-btn>
-        </v-card-actions>
-      </v-card-text>
-    </panel>
-  </v-flex>
-  <v-flex>
-    <panel title="Location on Google Maps - Search and save address">
-      <search-google-map />
-    </panel>
-  </v-flex>
-</v-layout>
+          </v-card-text>
+        </panel>
+      </v-flex>
+      <v-flex d-flex sm6 md6 lg6 xl6>
+        <panel title="Offering">
+          <v-card-text>
+            <v-text-field
+              label="Offering"
+              required
+              :rules="[required]"
+              v-model="bar.offering">
+            </v-text-field>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-alert
+                class="ml-4"
+                :value="error"
+                transition="scale-transition"
+                error>
+                {{error}}
+              </v-alert>
+              <v-btn
+                @click="addbar"
+                color="accent">Add venue
+              </v-btn>
+            </v-card-actions>
+          </v-card-text>
+        </panel>
+      </v-flex>
+      <v-flex>
+        <panel title="Location on Google Maps - Search and save address">
+          <search-google-map />
+        </panel>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

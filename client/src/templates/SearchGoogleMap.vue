@@ -1,32 +1,33 @@
 <template>
-<v-container class="pa-2">
-  <v-layout row wrap>
-    <v-flex class="gmap-auto" d-flex xs12 sm12 align-center light>
-      <gmap-autocomplete
-        @place_changed="setPlace">
-      </gmap-autocomplete>
-      <v-btn
-      @click="addMarker"
-      color="primary"
-      >Search and save address
-      </v-btn>
-    </v-flex>
-    <v-flex d-flex xs12 sm12>
-    <gmap-map
-      :center="center"
-      :zoom="15"
-      style="width:80%;  height: 400px;"
-    >
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
-        @click="center=m.position"
-      ></gmap-marker>
-    </gmap-map>
-    </v-flex>
-  </v-layout>
-</v-container>
+  <v-container class="pa-2">
+    <v-layout row wrap>
+      <v-flex class="gmap-box" d-flex align-center light>
+        <gmap-autocomplete
+          class="autocomplete-box"
+          @place_changed="setPlace">
+        </gmap-autocomplete>
+        <v-btn
+        @click="addMarker"
+        color="primary"
+        >Search and save address
+        </v-btn>
+      </v-flex>
+      <v-flex d-flex xs12>
+      <gmap-map
+        :center="center"
+        :zoom="15"
+        style="width:80%;  height: 400px;"
+      >
+        <gmap-marker
+          :key="index"
+          v-for="(m, index) in markers"
+          :position="m.position"
+          @click="center=m.position"
+        ></gmap-marker>
+      </gmap-map>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -51,6 +52,7 @@ export default {
     // receives a place object via the autocomplete component
     setPlace (place) {
       this.currentPlace = place
+      console.log('setplace', place)
     },
     addMarker () {
       if (this.currentPlace) {
@@ -77,7 +79,12 @@ export default {
 </script>
 
 <style scoped>
-.gmap-auto {
+.gmap-box {
   padding: 10px;
+}
+.autocomplete-box {
+  border: solid 2px;
+  border-color: #1E88E5;
+  padding: 5px;
 }
 </style>

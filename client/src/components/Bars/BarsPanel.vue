@@ -1,24 +1,28 @@
 <template>
-  <div>
-    <v-btn
-      :to="{name: 'addBar'}"
-      class="accent button"
-      medium
-      fixed
-      right
-      fab
-      v-if="$store.state.isUserLoggedIn"
-      >
-      <v-icon>add</v-icon>
-    </v-btn>
-      <panel title="Bars">
-        <div
-          class="bar"
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
+      <v-flex>
+        <v-card>
+          <v-toolbar dark color="primary">
+            <v-toolbar-title>Bars</v-toolbar-title>
+            <v-btn
+            :to="{name: 'addBar'}"
+            class="accent button"
+            large
+            absolute
+            right
+            fab
+            v-if="isUserLoggedIn"
+            >
+            <v-icon>add</v-icon>
+          </v-btn>
+          </v-toolbar>
+          <div class="pl-4 pr-4 pt-2 pb-2 bar"
           v-for="bar in bars"
           v-bind:key="bar.id"
           >
           <v-layout>
-            <v-flex>
+            <v-flex xs6>
               <div class="bar-title">
                 {{bar.title}}
               </div>
@@ -29,9 +33,9 @@
                 {{bar.location}}
               </div>
             </v-flex>
-            <v-flex>
+            <v-flex xs6>
         <!-- this button is freaking sweet -->
-                <v-btn
+              <v-btn
                 :to="{
                   name: 'barId',
                   params: { barId: bar.id
@@ -42,12 +46,15 @@
             </v-flex>
           </v-layout>
         </div>
-      </panel>
-  </div>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 import BarsService from '@/services/BarsService'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -65,6 +72,12 @@ export default {
         this.bars = (await BarsService.index(value)).data
       }
     }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user'
+    ])
   }
 }
 
@@ -73,7 +86,6 @@ export default {
 <style scoped>
 .bar {
   padding: 10px;
-  height: 180px;
   overflow: hidden;
 }
 .bar-title {

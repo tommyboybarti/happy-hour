@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <v-layout>
-      <v-flex xs6>
-        <bars-bookmarks />
-      </v-flex>
-      <v-flex xs6>
+    <v-layout row wrap>
+      <v-flex sm4 md4 lg4 xl4>
         <bars-search-panel />
+        <bars-bookmarks v-if="isUserLoggedIn"/>
+      </v-flex>
+      <v-flex sm8 md8 lg8 xl8>
         <bars-panel />
       </v-flex>
     </v-layout>
@@ -17,12 +17,18 @@ import BarsPanel from './BarsPanel'
 import BarsService from '@/services/BarsService'
 import BarsSearchPanel from './BarsSearchPanel'
 import BarsBookmarks from './BarsBookmarks'
+import {mapState} from 'vuex'
 
 export default {
   data () {
     return {
       bars: null
     }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
   },
   // await allways goes with async
   async mounted () {
