@@ -1,33 +1,31 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex sm12 md12 lg12 xl12>
+      <v-flex sm8 md8 lg8 xl8>
         <panel title="Location on Google Maps - Search a venue">
           <search-google-map v-on:changeTitle="updateVenue($event)"/>
         </panel>
       </v-flex>
-      <v-flex d-flex>
+      <v-flex sm4 md4 lg4 xl4>
         <panel title="Contact Information" :venue="venue">
           <v-card-text>
-             {{ venue.name }}
-             <br>
-             {{ venue.formatted_address }}
-             <br>
-             {{ venue.formatted_phone_number }}
-             <br>
-             {{ venue.rating }}
-             <br>
-             {{ venue.website }}
+            <div class="headline">Name</div>
+            {{ venue.name }}
+            <div class="headline">Address</div>
+            {{ venue.formatted_address }}
+            <div class="headline">Phone number</div>
+            {{ venue.formatted_phone_number }}
+            <div class="headline">Google rating</div>
+            {{ venue.rating }}
+            <div class="headline">Website</div>
+            {{ venue.website }}
           </v-card-text>
         </panel>
-        <panel title="Offering">
+      </v-flex>
+      <v-flex d-flex>
+        <panel title="Happy hour offering">
           <v-card-text>
-            <v-text-field
-              label="Offering"
-              required
-              :rules="[required]"
-              v-model="bar.offering">
-            </v-text-field>
+            <add-offering />
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-alert
@@ -52,6 +50,7 @@
 <script>
 import BarsService from '@/services/BarsService'
 import SearchGoogleMap from '@/templates/SearchGoogleMap'
+import AddOffering from './Addbar/AddOffering'
 
 export default {
   data () {
@@ -60,7 +59,7 @@ export default {
         name: 'Name of bar',
         formatted_address: 'Address of bar',
         formatted_phone_number: 'Phone number',
-        rating: 'Rating:',
+        rating: 'Rating',
         website: 'Website'
         // opening_hours: {
         //   weekday_text: 'opening hours'
@@ -101,12 +100,15 @@ export default {
     }
   },
   components: {
-    SearchGoogleMap
+    SearchGoogleMap,
+    AddOffering
   }
 }
 
 </script>
 
 <style scoped>
-
+.headline {
+  color: gray;
+}
 </style>

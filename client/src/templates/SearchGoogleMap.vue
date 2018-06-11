@@ -9,7 +9,7 @@
         <v-btn
         @click="addMarker"
         color="primary"
-        >Set marker
+        >Find on map
         </v-btn>
       </v-flex>
       <v-flex d-flex xs12>
