@@ -27,6 +27,9 @@
           <v-card-text>
             <add-offering v-on:sendInfo="updateOffering($event)" />
           </v-card-text>
+          <v-btn
+            @click="createBar">Save
+          </v-btn>
         </panel>
       </v-flex>
       <v-flex sm4 md4 lg4 xl4>
@@ -79,13 +82,18 @@ export default {
       spunte: {
         days: [],
         time: [],
-        offering: null
+        offering: ''
       },
+      // this object is probably obsolete...
       bar: {
-        title: null,
-        happyhour: null,
-        location: null,
-        offering: null
+        name: '',
+        formatted_address: '',
+        formatted_phone_number: '',
+        rating: '',
+        website: '',
+        days: [],
+        time: [],
+        offering: ''
       },
       error: null,
       required: (value) => !!value || 'required'
@@ -96,15 +104,15 @@ export default {
       // checking that every single value using a certain key (bar) is defined
       this.error = null
       const areAllFieldsFilledIn = Object
-        .keys(this.venue)
-        .every(key => !!this.venue[key])
+        .keys(this.bar)
+        .every(key => !!this.bar[key])
       if (!areAllFieldsFilledIn) {
         this.error = 'Please fill in all the required fields'
         return
       }
       // call API
       try {
-        await BarsService.post(this.venue)
+        await BarsService.post(this.bar)
         this.$router.push({
           name: 'bars'
         })
@@ -118,6 +126,11 @@ export default {
     updateOffering: function (updatedOffering) {
       this.spunte = updatedOffering
       console.log('update', this.spunte)
+    },
+    createBar () {
+      const bar = Object.assign(this.venue, this.spunte)
+      this.bar = bar
+      console.log('createBar', this.bar)
     }
   },
   components: {
