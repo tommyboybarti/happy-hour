@@ -22,10 +22,22 @@
           </v-card-text>
         </panel>
       </v-flex>
-      <v-flex d-flex>
+      <v-flex sm8 md8 lg8 xl8>
         <panel title="Happy hour offering">
           <v-card-text>
-            <add-offering />
+            <add-offering v-on:sendInfo="updateOffering($event)" />
+          </v-card-text>
+        </panel>
+      </v-flex>
+      <v-flex sm4 md4 lg4 xl4>
+        <panel title="Overview">
+          <v-card-text>
+            <div class="headline">Days</div>
+            {{ spunte.days.join(', ') }}
+            <div class="headline">Time</div>
+            {{ spunte.time.join(', ') }}
+            <div class="headline">Offering</div>
+            {{ spunte.offering }}
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-alert
@@ -56,13 +68,18 @@ export default {
   data () {
     return {
       venue: {
-        name: 'Name of bar',
-        formatted_address: 'Address of bar',
-        formatted_phone_number: 'Phone number',
-        rating: 'Rating',
-        website: 'Website'
+        name: '',
+        formatted_address: '',
+        formatted_phone_number: '',
+        rating: '',
+        website: ''
         // opening_hours: {
         //   weekday_text: 'opening hours'
+      },
+      spunte: {
+        days: [],
+        time: [],
+        offering: null
       },
       bar: {
         title: null,
@@ -79,15 +96,15 @@ export default {
       // checking that every single value using a certain key (bar) is defined
       this.error = null
       const areAllFieldsFilledIn = Object
-        .keys(this.bar)
-        .every(key => !!this.bar[key])
+        .keys(this.venue)
+        .every(key => !!this.venue[key])
       if (!areAllFieldsFilledIn) {
         this.error = 'Please fill in all the required fields'
         return
       }
       // call API
       try {
-        await BarsService.post(this.bar)
+        await BarsService.post(this.venue)
         this.$router.push({
           name: 'bars'
         })
@@ -97,6 +114,10 @@ export default {
     },
     updateVenue: function (updatedTitle) {
       this.venue = updatedTitle
+    },
+    updateOffering: function (updatedOffering) {
+      this.spunte = updatedOffering
+      console.log('update', this.spunte)
     }
   },
   components: {
