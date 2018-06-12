@@ -1,48 +1,51 @@
 <template>
-  <panel title="Happy Hour Info">
-    <v-card-title>
-      <h2>{{this.bar.name}}</h2>
-    </v-card-title>
+  <panel :title="bar.name">
+<v-layout row wrap>
+  <v-flex xs12 sm6>
     <v-card-text>
-      <h3>Happyhour</h3>
-      <div class="bar-happyhour">
-        Afternoon from
+      <p>Phone number: {{ bar.formatted_phone_number}}</p>
+      <p>Google rating: {{ bar.rating }}</p>
+      <p><a :href="bar.website">Website</a></p>
+      <v-btn
+        :to="{
+          name: 'editBar',
+          params: { editBar: bar.id
+          }}"
+        color="secondary"
+        v-if="isUserLoggedIn">
+        Edit Info
+      </v-btn>
+      <v-btn
+        @click="setAsBookmark"
+        color="secondary"
+        v-if="isUserLoggedIn && !bookmark">
+        Set as bookmark
+      </v-btn>
+      <v-btn
+        @click="unsetAsBookmark"
+        color="secondary"
+        v-if="isUserLoggedIn && bookmark">
+        Unset as bookmark
+      </v-btn>
+    </v-card-text>
+  </v-flex>
+  <v-flex xs12 sm6>
+    <v-card-text>
+      <h3>Happy hours</h3>
+        <p>Afternoon from
         {{ bar.times.af_start_time.HH  }}:{{ bar.times.af_start_time.mm  }}
         Until
         {{ bar.times.af_end_time.HH  }}:{{ bar.times.af_end_time.mm  }}
-      </div>
-      <div>
+        <br>
         Evening from
         {{ bar.times.ev_start_time.HH }}:{{ bar.times.ev_start_time.mm }}
         Until
-        {{ bar.times.ev_end_time.HH  }}:{{ bar.times.ev_end_time.mm  }}
-      </div>
-    </v-card-text>
-    <v-card-text>
+        {{ bar.times.ev_end_time.HH  }}:{{ bar.times.ev_end_time.mm  }}</p>
       <h3>Offering</h3>
       {{this.bar.offering}}
     </v-card-text>
-    <v-btn
-      :to="{
-        name: 'editBar',
-        params: { editBar: bar.id
-        }}"
-      color="secondary"
-      v-if="isUserLoggedIn">
-      Edit Info
-    </v-btn>
-    <v-btn
-      @click="setAsBookmark"
-      color="secondary"
-      v-if="isUserLoggedIn && !bookmark">
-      Set as bookmark
-    </v-btn>
-    <v-btn
-      @click="unsetAsBookmark"
-      color="secondary"
-      v-if="isUserLoggedIn && bookmark">
-      Unset as bookmark
-    </v-btn>
+  </v-flex>
+</v-layout>
   </panel>
 </template>
 

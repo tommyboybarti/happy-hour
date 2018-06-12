@@ -10,12 +10,14 @@
         v-model="bar.name">
       </v-text-field>
 
-      <v-text-field
+      <!-- NEEDS TO BE FIXED -->
+      
+      <!-- <v-text-field
         label="Happy Hour Times"
         required
         :rules="[required]"
-        v-model="bar.time">
-      </v-text-field>
+        v-model="bar.times">
+      </v-text-field> -->
 
       <v-text-field
         label="Address"
@@ -33,6 +35,7 @@
         <v-text-field
           label="Offering"
           required
+          multi-line
           :rules="[required]"
           v-model="bar.offering">
         </v-text-field>
@@ -70,9 +73,9 @@ export default {
   data () {
     return {
       bar: {
-        title: null,
-        happyhour: null,
-        location: null,
+        name: null,
+        times: null,
+        formatted_address: null,
         offering: null
       },
       error: null,

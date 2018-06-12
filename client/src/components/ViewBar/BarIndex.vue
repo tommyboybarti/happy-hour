@@ -1,8 +1,11 @@
 <template>
 <v-container>
-  <v-layout>
-    <v-flex xs6>
+  <v-layout column>
+    <v-flex>
       <bar-data :bar="bar" />
+    </v-flex>
+    <v-flex>
+      <panel title="placeholder for map" />
     </v-flex>
   </v-layout>
 </v-container>
