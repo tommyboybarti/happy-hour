@@ -4,7 +4,7 @@
       <v-flex>
         <v-card>
           <v-toolbar dark color="primary">
-            <v-toolbar-title>Bars</v-toolbar-title>
+            <v-toolbar-title>Happy Hours</v-toolbar-title>
             <v-btn
             :to="{name: 'addBar'}"
             class="accent button"
@@ -23,14 +23,19 @@
           >
           <v-layout>
             <v-flex xs6>
-              <div class="bar-title">
+              <div class="bar-name">
                 {{bar.name}}
               </div>
-              <div class="bar-happyhour">
-                {{bar.time.toString()}}
+              <div class="bar-times">
+                From {{ bar.times.af_start_time.HH  }}:{{ bar.times.af_start_time.mm  }}
+                until {{ bar.times.af_end_time.HH  }}:{{ bar.times.af_end_time.mm  }}
+                <br>
+                and from {{ bar.times.ev_start_time.HH }}:{{ bar.times.ev_start_time.mm }}
+                until {{ bar.times.ev_end_time.HH  }}:{{ bar.times.ev_end_time.mm  }}
               </div>
-              <div class="bar-location">
-                {{bar.offering}}
+              <br>
+              <div class="bar-address">
+                {{bar.formatted_address}}
               </div>
             </v-flex>
             <v-flex xs6>
@@ -89,13 +94,13 @@ export default {
   padding: 10px;
   overflow: hidden;
 }
-.bar-title {
+.bar-name {
   font-size: 20px;
 }
-.bar-happyhour {
-  font-size: 18px;
+.bar-address{
+  font-size: 12px;
 }
-.bar-location {
+.bar-times {
   font-size: 14px;
 }
 .button {

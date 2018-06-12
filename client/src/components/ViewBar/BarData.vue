@@ -1,11 +1,25 @@
 <template>
-  <panel title="Bar Metadata">
+  <panel title="Happy Hour Info">
     <v-card-title>
-      {{this.bar.name}}
-      <br>
-      Happyhour: {{this.bar.time.toString()}}
+      <h2>{{this.bar.name}}</h2>
     </v-card-title>
     <v-card-text>
+      <h3>Happyhour</h3>
+      <div class="bar-happyhour">
+        Afternoon from
+        {{ bar.times.af_start_time.HH  }}:{{ bar.times.af_start_time.mm  }}
+        Until
+        {{ bar.times.af_end_time.HH  }}:{{ bar.times.af_end_time.mm  }}
+      </div>
+      <div>
+        Evening from
+        {{ bar.times.ev_start_time.HH }}:{{ bar.times.ev_start_time.mm }}
+        Until
+        {{ bar.times.ev_end_time.HH  }}:{{ bar.times.ev_end_time.mm  }}
+      </div>
+    </v-card-text>
+    <v-card-text>
+      <h3>Offering</h3>
       {{this.bar.offering}}
     </v-card-text>
     <v-btn

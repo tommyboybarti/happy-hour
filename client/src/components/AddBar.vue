@@ -51,10 +51,16 @@
             {{ spunte.offering }}
             <v-card-actions>
               <v-btn
+                v-if="!saved"
                 primary
                 @click="createBar">Save info
               </v-btn>
-              <v-spacer></v-spacer>
+            </v-card-actions>
+            <div v-if="saved">
+              <h3>Thanks for sharing your informatio please add the venue to our database</h3>
+              <img id="homer" src="../assets/homer.jpg" alt="cheers Homer">
+            </div>
+            <v-card-actions>
               <v-alert
                 class="ml-4"
                 :value="error"
@@ -69,9 +75,6 @@
                 color="accent">Add venue
               </v-btn>
             </v-card-actions>
-            <panel titel="Thanks for adding your post" v-if="homer">
-              <img id="homer" src="../assets/homer.jpg" alt="cheers Homer">
-            </panel>
           </v-card-text>
         </panel>
       </v-flex>

@@ -12,7 +12,7 @@ module.exports = {
         bars = await Bar.findAll({
           where: {
             [Op.or]: [
-              'name', 'time', 'offering' 
+              'name', 'times', 'offering' 
             ].map(key => ({
               [key]: {
                 [Op.like]: `%${search}%`
@@ -24,7 +24,7 @@ module.exports = {
         bars = await Bar.findAll({
           limit: 10
         })
-        // console.log('barscontroller', bars)
+        console.log('barscontroller', bars)
       }
       res.send(bars)
       console.log('AAAAAAAAAAAHHHHHHHHHHHHH', bars)
@@ -48,6 +48,7 @@ module.exports = {
     try {
       const bar = await Bar.create(req.body)
       res.send(bar)
+      console.log('postbar', bar)
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured trying to create your content'

@@ -9,9 +9,12 @@
         <td class="text-xs-right">
           {{props.item.name}}
         </td>
-        <td class="text-xs-right">
-          {{props.item.time.toString()}}
-        </td>
+        <!-- <td class="text-xs-right">
+          {{ props.item.times.af_start_time.HH  }}:{{ props.item.times.af_start_time.mm  }}
+          -{{ props.itemtimes.af_end_time.HH  }}:{{ props.item.times.af_end_time.mm  }}
+          {{ props.item.times.ev_start_time.HH }}:{{ props.item.times.ev_start_time.mm }}
+          -{{props.item.times.ev_end_time.HH  }}:{{ props.item.times.ev_end_time.mm  }}
+        </td> -->
       </template>
     </v-data-table>
   </panel>
@@ -28,11 +31,12 @@ export default {
         {
           text: 'Title',
           value: 'name'
-        },
-        {
-          text: 'Happyhour',
-          value: 'time'
         }
+        // ,
+        // {
+        //   text: 'Happyhour',
+        //   value: 'times'
+        // }
       ],
       pagination: {
         sortBy: 'createdAt',

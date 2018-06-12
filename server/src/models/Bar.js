@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
           return this.setDataValue('days', JSON.stringify(val));
       }
     },
-    time: { 
+    times: { 
       type: DataTypes.STRING, 
       get: function() {
-          return JSON.parse(this.getDataValue('time'));
-      }, 
+          return JSON.parse(this.getDataValue('times'));
+      },
       set: function(val) {
-          return this.setDataValue('time', JSON.stringify(val));
+          return this.setDataValue('times', JSON.stringify(val));
       }
     },
     offering: DataTypes.TEXT
