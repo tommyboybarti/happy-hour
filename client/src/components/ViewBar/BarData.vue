@@ -3,7 +3,7 @@
     <v-card-title>
       {{this.bar.name}}
       <br>
-      Happyhour: {{this.bar.time}}
+      Happyhour: {{this.bar.time.toString()}}
     </v-card-title>
     <v-card-text>
       {{this.bar.offering}}

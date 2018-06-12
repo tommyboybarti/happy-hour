@@ -7,10 +7,10 @@
       >
       <template slot="items" slot-scope="props">
         <td class="text-xs-right">
-          {{props.item.title}}
+          {{props.item.name}}
         </td>
         <td class="text-xs-right">
-          {{props.item.happyhour}}
+          {{props.item.time.toString()}}
         </td>
       </template>
     </v-data-table>
@@ -27,11 +27,11 @@ export default {
       headers: [
         {
           text: 'Title',
-          value: 'title'
+          value: 'name'
         },
         {
           text: 'Happyhour',
-          value: 'happyhour'
+          value: 'time'
         }
       ],
       pagination: {

@@ -27,7 +27,7 @@
                 {{bar.name}}
               </div>
               <div class="bar-happyhour">
-                {{bar.time}}
+                {{bar.time.toString()}}
               </div>
               <div class="bar-location">
                 {{bar.offering}}
