@@ -24,13 +24,13 @@
           <v-layout>
             <v-flex xs6>
               <div class="bar-title">
-                {{bar.title}}
+                {{bar.name}}
               </div>
               <div class="bar-happyhour">
-                {{bar.happyhour}}
+                {{bar.time}}
               </div>
               <div class="bar-location">
-                {{bar.location}}
+                {{bar.offering}}
               </div>
             </v-flex>
             <v-flex xs6>
@@ -70,6 +70,7 @@ export default {
       async handler (value) {
         // do a request to the backend for all the bars
         this.bars = (await BarsService.index(value)).data
+        console.log('barsPanel', this.bars)
       }
     }
   },

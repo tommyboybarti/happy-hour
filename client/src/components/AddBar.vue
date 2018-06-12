@@ -84,16 +84,15 @@ export default {
         time: [],
         offering: ''
       },
-      // this object is probably obsolete...
       bar: {
-        name: '',
-        formatted_address: '',
-        formatted_phone_number: '',
-        rating: '',
-        website: '',
-        days: [],
-        time: [],
-        offering: ''
+        name: null,
+        formatted_address: null,
+        formatted_phone_number: null,
+        rating: null,
+        website: null,
+        days: null,
+        time: null,
+        offering: null
       },
       error: null,
       required: (value) => !!value || 'required'
@@ -106,6 +105,7 @@ export default {
       const areAllFieldsFilledIn = Object
         .keys(this.bar)
         .every(key => !!this.bar[key])
+      console.log('before sending object bar', this.bar)
       if (!areAllFieldsFilledIn) {
         this.error = 'Please fill in all the required fields'
         return
@@ -116,8 +116,9 @@ export default {
         this.$router.push({
           name: 'bars'
         })
+        console.log('after sending bar object', this.bar)
       } catch (err) {
-        console.log(err)
+        console.log('error', err)
       }
     },
     updateVenue: function (updatedTitle) {
@@ -128,6 +129,24 @@ export default {
       console.log('update', this.spunte)
     },
     createBar () {
+      delete this.venue.address_components
+      delete this.venue.adr_address
+      delete this.venue.geometry
+      delete this.venue.html_attributions
+      delete this.venue.icon
+      delete this.venue.id
+      delete this.venue.international_phone_number
+      delete this.venue.opening_hours
+      delete this.venue.photos
+      delete this.venue.place_id
+      delete this.venue.reference
+      delete this.venue.reviews
+      delete this.venue.scope
+      delete this.venue.types
+      delete this.venue.url
+      delete this.venue.utc_offset
+      delete this.venue.vicinity
+
       const bar = Object.assign(this.venue, this.spunte)
       this.bar = bar
       console.log('createBar', this.bar)

@@ -35,6 +35,7 @@ export default {
     // do a request to the backend for all the bars
     // response.data invokes axios to return the content.
     this.bars = (await BarsService.index()).data
+    console.log('barsINdex', this.bars)
   },
   components: {
     BarsPanel,

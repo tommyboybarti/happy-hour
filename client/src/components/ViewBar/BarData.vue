@@ -1,14 +1,13 @@
 <template>
   <panel title="Bar Metadata">
     <v-card-title>
-      {{this.bar.title}}
+      {{this.bar.name}}
       <br>
-      Happyhour: {{this.bar.happyhour}}
+      Happyhour: {{this.bar.time}}
     </v-card-title>
     <v-card-text>
       {{this.bar.offering}}
     </v-card-text>
-    <!-- looks broken below but acutally works fine.. -->
     <v-btn
       :to="{
         name: 'editBar',

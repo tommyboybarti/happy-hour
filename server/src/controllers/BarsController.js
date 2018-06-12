@@ -12,7 +12,7 @@ module.exports = {
         bars = await Bar.findAll({
           where: {
             [Op.or]: [
-              'title', 'happyhour', 'offering' 
+              'name', 'time', 'offering' 
             ].map(key => ({
               [key]: {
                 [Op.like]: `%${search}%`
@@ -24,6 +24,7 @@ module.exports = {
         bars = await Bar.findAll({
           limit: 10
         })
+        console.log('barscontroller', bars)
       }
       res.send(bars)
     } catch (err) {
