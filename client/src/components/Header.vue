@@ -2,9 +2,8 @@
   <v-toolbar elevation-25 fixed dark class="primary" app>
     <v-toolbar-title class="mr-4">
       <v-btn
-        round
-        color="secondary"
-        class="home"
+        flat
+        dark
         :to="{name: 'home'}">
         Home
       </v-btn>
@@ -60,11 +59,5 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  cursor: pointer;
-}
-.home:hover {
-  color: darkgray;
-}
 
 </style>
