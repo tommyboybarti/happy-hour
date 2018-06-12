@@ -34,8 +34,19 @@
           <v-card-text v-show="preview">
             <div class="headline">Days</div>
             {{ spunte.days.join(', ') }}
-            <div class="headline">Time</div>
-            {{ spunte.time.join(', ') }}
+            <div class="headline">Happy Hours</div>
+            <div>
+              Afternoon from
+              {{ spunte.times.af_start_time.HH  }}:{{  spunte.times.af_start_time.mm  }}
+              Until
+              {{ spunte.times.af_end_time.HH  }}:{{ spunte.times.af_end_time.mm  }}
+            </div>
+            <div>
+              Evening from
+              {{ spunte.times.ev_start_time.HH }}:{{ spunte.times.ev_start_time.mm }}
+              Until
+              {{ spunte.times.ev_end_time.HH  }}:{{ spunte.times.ev_end_time.mm  }}
+            </div>
             <div class="headline">Offering</div>
             {{ spunte.offering }}
             <v-card-actions>
@@ -90,7 +101,12 @@ export default {
       },
       spunte: {
         days: [],
-        time: [],
+        times: {
+          af_start_time: {HH: '15', mm: '00'},
+          af_end_time: {HH: '18', mm: '00'},
+          ev_start_time: {HH: '21', mm: '00'},
+          ev_end_time: {HH: '00', mm: '00'}
+        },
         offering: ''
       },
       bar: {
@@ -100,7 +116,7 @@ export default {
         rating: null,
         website: null,
         days: null,
-        time: null,
+        times: null,
         offering: null
       },
       error: null,

@@ -9,11 +9,12 @@ import Vuetify from 'vuetify'
 import store from '@/store/store'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import Panel from '@/templates/Panel'
+import VueTimepicker from 'vue2-timepicker'
 
 Vue.config.productionTip = false
 
 Vue.component('panel', Panel)
-
+Vue.use(VueTimepicker)
 Vue.use(Vuetify, {
   theme: {
     primary: '#1E88E5',

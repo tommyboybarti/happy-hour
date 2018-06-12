@@ -16,10 +16,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-preset-es2015": "^6.24.1",
     "lodash": "^4.17.10",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.9.7",
+    "vue2-timepicker": "^0.1.4",
     "vuetify": "^1.0.18",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4",

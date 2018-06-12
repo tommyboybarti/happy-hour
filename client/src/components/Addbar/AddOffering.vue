@@ -1,4 +1,5 @@
 <template>
+<v-container>
   <v-stepper v-model="stepper" vertical>
     <v-stepper-step step="1">
       Choose days
@@ -17,6 +18,9 @@
             <v-flex sm6>
               <v-checkbox v-model="venue.days" label="Saturday" value="Saturday"></v-checkbox>
               <v-checkbox v-model="venue.days" label="Sunday" value="Sunday"></v-checkbox>
+              <br>
+              <v-checkbox v-model="venue.days" label="Weekdays" value="Weekdays"></v-checkbox>
+              <v-checkbox v-model="venue.days" label="Weekend" value="Weekend"></v-checkbox>
             </v-flex>
           </v-layout>
         </v-container>
@@ -30,15 +34,35 @@
         <v-container fluid>
           <v-layout row wrap>
             <v-flex sm6>
-              <h4>Afternoon</h4>
-              <v-checkbox v-model="venue.time" label="3-5pm" value="3-5pm"></v-checkbox>
-              <v-checkbox v-model="venue.time" label="3-6pm" value="3-6pm"></v-checkbox>
+              <h4>FROM</h4>
+              <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.af_start_time" />
             </v-flex>
             <v-flex sm6>
-              <h4>Late night</h4>
-              <v-checkbox v-model="venue.time" label="9pm-end" value="9pm-end"></v-checkbox>
-              <v-checkbox v-model="venue.time" label="10pm-end" value="10pm-end"></v-checkbox>
+              <h4>UNTIL</h4>
+             <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.af_end_time" />
             </v-flex>
+            <v-btn
+              v-show="!reversed"
+              @click="reverse"
+              color="primary"
+              >Add reverse happy hour
+            </v-btn>
+            <v-btn
+              v-show="reversed"
+              @click="remove"
+              color="primary"
+              >Remove reverse happy hour
+            </v-btn>
+            <v-layout v-show="reversed">
+              <v-flex sm6>
+                <h4>FROM</h4>
+                <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.ev_start_time" />
+              </v-flex>
+              <v-flex sm6>
+                <h4>UNTIL</h4>
+                <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.ev_end_time" />
+              </v-flex>
+            </v-layout>
           </v-layout>
         </v-container>
       </v-card>
@@ -55,17 +79,25 @@
       <v-btn flat @click.native="stepper = 1">Cancel</v-btn>
     </v-stepper-content>
   </v-stepper>
+</v-container>
 </template>
 
 <script>
+import VueTimepicker from 'vue2-timepicker'
 
 export default {
   data () {
     return {
+      reversed: true,
       stepper: 1,
       venue: {
         days: [],
-        time: [],
+        times: {
+          af_start_time: {HH: '15', mm: '00'},
+          af_end_time: {HH: '18', mm: '00'},
+          ev_start_time: {HH: '21', mm: '00'},
+          ev_end_time: {HH: '00', mm: '00'}
+        },
         offering: ''
       }
     }
@@ -74,12 +106,33 @@ export default {
     saveInfo () {
       this.$emit('sendInfo', this.venue)
       console.log('sendinfo', this.venue)
+    },
+    reverse () {
+      this.reversed = true
+      // this.venue.times = Object.assign({ev_start_time: {HH: '21', mm: '00'}, ev_end_time: {HH: '00', mm: '00'}}, this.venue.times)
+      this.venue.times.ev_start_time = Object.assign({HH: '', mm: ''}, this.venue.times.ev_start_time)
+      this.venue.times.ev_end_time = Object.assign({HH: '', mm: ''}, this.venue.times.ev_end_time)
+    },
+    remove () {
+      this.reversed = false
+      // delete this.venue.times.ev_start_time
+      // delete this.venue.times.ev_end_time
+      delete this.venue.times.ev_start_time.HH
+      delete this.venue.times.ev_start_time.mm
+      delete this.venue.times.ev_end_time.HH
+      delete this.venue.times.ev_end_time.mm
     }
+  },
+  components: {
+    VueTimepicker
   }
 }
 
 </script>
 
 <style scoped>
-
+.picker {
+  border: solid 1px;
+  border-color: #1E88E5;
+}
 </style>
