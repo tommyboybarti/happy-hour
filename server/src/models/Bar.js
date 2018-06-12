@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING, 
       get: function() {
           return JSON.parse(this.getDataValue('days'));
-      }, 
+      },
       set: function(val) {
           return this.setDataValue('days', JSON.stringify(val));
       }

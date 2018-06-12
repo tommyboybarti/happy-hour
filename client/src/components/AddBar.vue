@@ -8,7 +8,7 @@
       </v-flex>
       <v-flex sm4 md4 lg4 xl4>
         <panel title="Contact Information" :venue="venue">
-          <v-card-text>
+          <v-card-text v-show="preview">
             <div class="headline">Name</div>
             {{ venue.name }}
             <div class="headline">Address</div>
@@ -27,14 +27,11 @@
           <v-card-text>
             <add-offering v-on:sendInfo="updateOffering($event)" />
           </v-card-text>
-          <v-btn
-            @click="createBar">Save
-          </v-btn>
         </panel>
       </v-flex>
       <v-flex sm4 md4 lg4 xl4>
         <panel title="Overview">
-          <v-card-text>
+          <v-card-text v-show="preview">
             <div class="headline">Days</div>
             {{ spunte.days.join(', ') }}
             <div class="headline">Time</div>
@@ -42,19 +39,28 @@
             <div class="headline">Offering</div>
             {{ spunte.offering }}
             <v-card-actions>
+              <v-btn
+                primary
+                @click="createBar">Save info
+              </v-btn>
               <v-spacer></v-spacer>
               <v-alert
                 class="ml-4"
                 :value="error"
                 transition="scale-transition"
-                error>
+                error
+                bottom>
                 {{error}}
               </v-alert>
               <v-btn
+                v-show="saved"
                 @click="addbar"
                 color="accent">Add venue
               </v-btn>
             </v-card-actions>
+            <panel titel="Thanks for adding your post" v-if="homer">
+              <img id="homer" src="../assets/homer.jpg" alt="cheers Homer">
+            </panel>
           </v-card-text>
         </panel>
       </v-flex>
@@ -66,10 +72,13 @@
 import BarsService from '@/services/BarsService'
 import SearchGoogleMap from '@/templates/SearchGoogleMap'
 import AddOffering from './Addbar/AddOffering'
+// import _ from 'lodash'
 
 export default {
   data () {
     return {
+      preview: false,
+      saved: false,
       venue: {
         name: '',
         formatted_address: '',
@@ -112,11 +121,11 @@ export default {
       }
       // call API
       try {
+        this.homer = true
         await BarsService.post(this.bar)
         this.$router.push({
           name: 'bars'
         })
-        console.log('after sending bar object', this.bar)
       } catch (err) {
         console.log('error', err)
       }
@@ -126,6 +135,7 @@ export default {
     },
     updateOffering: function (updatedOffering) {
       this.spunte = updatedOffering
+      this.preview = true
       console.log('update', this.spunte)
     },
     createBar () {
@@ -146,9 +156,9 @@ export default {
       delete this.venue.url
       delete this.venue.utc_offset
       delete this.venue.vicinity
-
       const bar = Object.assign(this.venue, this.spunte)
       this.bar = bar
+      this.saved = true
       console.log('createBar', this.bar)
     }
   },

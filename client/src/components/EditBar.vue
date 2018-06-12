@@ -7,21 +7,21 @@
         label="Title"
         required
         :rules="[required]"
-        v-model="bar.title">
+        v-model="bar.name">
       </v-text-field>
 
       <v-text-field
         label="Happy Hour Times"
         required
         :rules="[required]"
-        v-model="bar.happyhour">
+        v-model="bar.time">
       </v-text-field>
 
       <v-text-field
         label="Address"
         required
         :rules="[required]"
-        v-model="bar.location">
+        v-model="bar.formatted_address">
       </v-text-field>
 
       </v-card-text>
