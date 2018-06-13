@@ -62,4 +62,3 @@ export default {
 <style>
 
 </style>
-git 
