@@ -9,15 +9,40 @@
         :rules="[required]"
         v-model="bar.name">
       </v-text-field>
-
-      <!-- NEEDS TO BE FIXED -->
-      <!-- <v-text-field
-        label="Happy Hour Times"
-        required
-        :rules="[required]"
-        v-model="bar.times">
-      </v-text-field> -->
-
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex sm6>
+            <h4>FROM</h4>
+            <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="bar.times.af_start_time" />
+          </v-flex>
+          <v-flex sm6>
+            <h4>UNTIL</h4>
+            <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="bar.times.af_end_time" />
+          </v-flex>
+          <v-btn
+            v-show="!reversed"
+            @click="reverse"
+            color="primary"
+            >Add reverse happy hour
+          </v-btn>
+          <v-btn
+            v-show="reversed"
+            @click="remove"
+            color="primary"
+            >Remove reverse happy hour
+          </v-btn>
+          <v-layout v-show="reversed">
+            <v-flex sm6>
+              <h4>FROM</h4>
+              <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="bar.times.ev_start_time" />
+            </v-flex>
+            <v-flex sm6>
+              <h4>UNTIL</h4>
+              <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="bar.times.ev_end_time" />
+            </v-flex>
+          </v-layout>
+        </v-layout>
+      </v-container>
       <v-text-field
         label="Address"
         required
@@ -67,13 +92,20 @@
 <script>
 import BarsService from '@/services/BarsService'
 import SearchGoogleMap from '@/templates/SearchGoogleMap'
+import VueTimepicker from 'vue2-timepicker'
 
 export default {
   data () {
     return {
+      reversed: false,
       bar: {
         name: null,
-        times: null,
+        times: {
+          af_start_time: {HH: '', mm: ''},
+          af_end_time: {HH: '', mm: ''},
+          ev_start_time: {HH: '', mm: ''},
+          ev_end_time: {HH: '', mm: ''}
+        },
         formatted_address: null,
         offering: null
       },
@@ -97,15 +129,24 @@ export default {
         await BarsService.put(this.bar)
         // this works as long as the browser keeps a history
         this.$router.go(-1)
-        // ({
-        //   name: 'bar',
-        //   params: {
-        //     barId: barId
-        //   }
-        // })
       } catch (err) {
         console.log(err)
       }
+    },
+    reverse () {
+      this.reversed = true
+      // this.venue.times = Object.assign({ev_start_time: {HH: '21', mm: '00'}, ev_end_time: {HH: '00', mm: '00'}}, this.venue.times)
+      this.bar.times.ev_start_time = Object.assign({HH: '', mm: ''}, this.bar.times.ev_start_time)
+      this.bar.times.ev_end_time = Object.assign({HH: '', mm: ''}, this.bar.times.ev_end_time)
+    },
+    remove () {
+      this.reversed = false
+      // delete this.venue.times.ev_start_time
+      // delete this.venue.times.ev_end_time
+      delete this.bar.times.ev_start_time.HH
+      delete this.bar.times.ev_start_time.mm
+      delete this.bar.times.ev_end_time.HH
+      delete this.bar.times.ev_end_time.mm
     }
   },
   async mounted () {
@@ -117,7 +158,8 @@ export default {
     }
   },
   components: {
-    SearchGoogleMap
+    SearchGoogleMap,
+    VueTimepicker
   }
 }
 
