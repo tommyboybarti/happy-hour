@@ -1,83 +1,85 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex sm8 md8 lg8 xl8>
+      <v-flex>
         <panel title="Location on Google Maps - Search a venue">
           <search-google-map v-on:changeTitle="updateVenue($event)"/>
         </panel>
       </v-flex>
-      <v-flex sm4 md4 lg4 xl4>
-        <panel title="Contact Information" :venue="venue">
-          <v-card-text v-show="preview">
-            <div class="headline">Name</div>
-            {{ venue.name }}
-            <div class="headline">Address</div>
-            {{ venue.formatted_address }}
-            <div class="headline">Phone number</div>
-            {{ venue.formatted_phone_number }}
-            <div class="headline">Google rating</div>
-            {{ venue.rating }}
-            <div class="headline">Website</div>
-            {{ venue.website }}
-          </v-card-text>
-        </panel>
-      </v-flex>
-      <v-flex sm8 md8 lg8 xl8>
+      <v-flex>
         <panel title="Happy hour offering">
           <v-card-text>
             <add-offering v-on:sendInfo="updateOffering($event)" />
           </v-card-text>
         </panel>
       </v-flex>
-      <v-flex sm4 md4 lg4 xl4>
-        <panel title="Overview">
-          <v-card-text v-show="preview">
-            <div class="headline">Days</div>
-            {{ spunte.days.join(', ') }}
-            <div class="headline">Happy Hours</div>
-            <div>
-              Afternoon from
-              {{ spunte.times.af_start_time.HH  }}:{{  spunte.times.af_start_time.mm  }}
-              Until
-              {{ spunte.times.af_end_time.HH  }}:{{ spunte.times.af_end_time.mm  }}
-            </div>
-            <div>
-              Evening from
-              {{ spunte.times.ev_start_time.HH }}:{{ spunte.times.ev_start_time.mm }}
-              Until
-              {{ spunte.times.ev_end_time.HH  }}:{{ spunte.times.ev_end_time.mm  }}
-            </div>
-            <div class="headline">Offering</div>
-            {{ spunte.offering }}
-            <v-card-actions>
-              <v-btn
-                v-if="!saved"
-                primary
-                @click="createBar">Save info
-              </v-btn>
-            </v-card-actions>
-            <div v-if="saved">
-              <h3>Thanks for sharing your informatio please add the venue to our database</h3>
-              <img id="homer" src="../assets/homer.jpg" alt="cheers Homer">
-            </div>
-            <v-card-actions>
-              <v-alert
-                class="ml-4"
-                :value="error"
-                transition="scale-transition"
-                error
-                bottom>
-                {{error}}
-              </v-alert>
-              <v-btn
-                v-show="saved"
-                @click="addbar"
-                color="accent">Add venue
-              </v-btn>
-            </v-card-actions>
-          </v-card-text>
+    </v-layout>
+    <v-layout row justify-center>
+      <v-dialog v-model="preview" max-width="800">
+        <panel title="Preview">
+          <v-layout row>
+            <v-flex xs12 sm6>
+              <v-card-text>
+                <div class="headline">Name</div>
+                {{ venue.name }}
+                <div class="headline">Address</div>
+                {{ venue.formatted_address }}
+                <div class="headline">Phone number</div>
+                {{ venue.formatted_phone_number }}
+                <div class="headline">Google rating</div>
+                {{ venue.rating }}
+                <div class="headline">Website</div>
+                {{ venue.website }}
+              </v-card-text>
+            </v-flex>
+            <v-flex xs12 sm6>
+              <v-card-text>
+                <div class="headline">Days</div>
+                {{ spunte.days.join(', ') }}
+                <div class="headline">Happy Hours</div>
+                <div>
+                  Afternoon from
+                  {{ spunte.times.af_start_time.HH  }}:{{  spunte.times.af_start_time.mm  }}
+                  Until
+                  {{ spunte.times.af_end_time.HH  }}:{{ spunte.times.af_end_time.mm  }}
+                </div>
+                <div>
+                  Evening from
+                  {{ spunte.times.ev_start_time.HH }}:{{ spunte.times.ev_start_time.mm }}
+                  Until
+                  {{ spunte.times.ev_end_time.HH  }}:{{ spunte.times.ev_end_time.mm  }}
+                </div>
+                <div class="headline">Offering</div>
+                {{ spunte.offering }}
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn flat="flat" @click.native="preview = false">Cancel</v-btn>
+                <v-alert
+                  class="ml-4"
+                  :value="error"
+                  transition="scale-transition"
+                  error
+                  bottom>
+                  {{error}}
+                </v-alert>
+                <v-btn color="primary" @click.native="createBar">Save</v-btn>
+              </v-card-actions>
+            </v-flex>
+          </v-layout>
         </panel>
-      </v-flex>
+      </v-dialog>
+      <v-dialog v-model="saved" max-width="240">
+        <v-card>
+          <v-card-text><h2>Thanks for sharing your information!</h2></v-card-text>
+          <img class="pa-2" src="@/assets/homer.jpg" />
+          <v-spacer></v-spacer>
+          <v-btn
+            @click="addbar"
+            color="accent">Move on
+          </v-btn>
+        </v-card>
+      </v-dialog>
     </v-layout>
   </v-container>
 </template>
@@ -99,8 +101,6 @@ export default {
         formatted_phone_number: '',
         rating: '',
         website: ''
-        // opening_hours: {
-        //   weekday_text: 'opening hours'
       },
       spunte: {
         days: [],

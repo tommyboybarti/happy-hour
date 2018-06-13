@@ -34,6 +34,8 @@
         <v-container fluid>
           <v-layout row wrap>
             <v-flex sm6>
+              <v-layout row>
+                <v-flex sm6>
               <h4>FROM</h4>
               <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.af_start_time" />
             </v-flex>
@@ -41,6 +43,18 @@
               <h4>UNTIL</h4>
              <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.af_end_time" />
             </v-flex>
+              </v-layout>
+            </v-flex>
+            <v-layout v-show="reversed">
+              <v-flex sm6>
+                <h4>FROM</h4>
+                <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.ev_start_time" />
+              </v-flex>
+              <v-flex sm6>
+                <h4>UNTIL</h4>
+                <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.ev_end_time" />
+              </v-flex>
+            </v-layout>
             <v-btn
               v-show="!reversed"
               @click="reverse"
@@ -53,19 +67,10 @@
               color="primary"
               >Remove reverse happy hour
             </v-btn>
-            <v-layout v-show="reversed">
-              <v-flex sm6>
-                <h4>FROM</h4>
-                <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.ev_start_time" />
-              </v-flex>
-              <v-flex sm6>
-                <h4>UNTIL</h4>
-                <vue-timepicker :minute-interval="15" class="picker ma-2" v-model="venue.times.ev_end_time" />
-              </v-flex>
-            </v-layout>
           </v-layout>
         </v-container>
       </v-card>
+      <br>
       <v-btn color="primary" @click.native="stepper = 3">Continue</v-btn>
       <v-btn flat @click.native="stepper = 1">Cancel</v-btn>
     </v-stepper-content>
