@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     formatted_phone_number: DataTypes.STRING,
     rating: DataTypes.FLOAT,
     website: DataTypes.STRING,
-    days: { 
+    days: {
       type: DataTypes.STRING, 
       get: function() {
           return JSON.parse(this.getDataValue('days'));

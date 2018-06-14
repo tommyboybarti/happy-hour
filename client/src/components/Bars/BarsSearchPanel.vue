@@ -1,7 +1,7 @@
 <template>
   <panel title="Search">
-      <v-text-field
-      label="Search by name of bar, happyhours etc."
+    <v-text-field
+      label="Search by name of venue, happyhours offering.."
       v-model="search">
     </v-text-field>
   </panel>

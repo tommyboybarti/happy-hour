@@ -1,11 +1,11 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex sm4 md4 lg4 xl4>
+      <v-flex sm5 md4 lg4 xl4>
         <bars-search-panel />
         <bars-bookmarks v-if="isUserLoggedIn"/>
       </v-flex>
-      <v-flex sm8 md8 lg8 xl8>
+      <v-flex sm7 md8 lg8 xl8>
         <bars-panel />
       </v-flex>
     </v-layout>

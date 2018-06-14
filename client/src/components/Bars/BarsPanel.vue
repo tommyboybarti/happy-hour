@@ -21,8 +21,8 @@
           v-for="bar in bars"
           v-bind:key="bar.id"
           >
-          <v-layout>
-            <v-flex xs6>
+          <v-layout row wrap>
+            <v-flex xs12 sm8>
               <div class="bar-name">
                 {{bar.name}}
               </div>
@@ -38,16 +38,18 @@
                 {{bar.formatted_address}}
               </div>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs12 sm4>
         <!-- this button is freaking sweet -->
               <v-btn
                 :to="{
                   name: 'barId',
                   params: { barId: bar.id
                   }}"
-                color="secondary">
+                color="secondary"
+                >
                 View venue
               </v-btn>
+              <br>
             </v-flex>
           </v-layout>
         </div>

@@ -63,7 +63,7 @@
                   bottom>
                   {{error}}
                 </v-alert>
-                <v-btn color="primary" @click.native="createBar">Save</v-btn>
+                <v-btn color="primary" @click.native="addbar">Save</v-btn>
               </v-card-actions>
             </v-flex>
           </v-layout>
@@ -73,11 +73,13 @@
         <v-card>
           <v-card-text><h2>Thanks for sharing your information!</h2></v-card-text>
           <img class="pa-2" src="@/assets/homer.jpg" />
-          <v-spacer></v-spacer>
-          <v-btn
-            @click="addbar"
-            color="accent">Move on
-          </v-btn>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              @click="moveon"
+              color="accent">Move on
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-dialog>
     </v-layout>
@@ -130,34 +132,6 @@ export default {
     async addbar () {
       // checking that every single value using a certain key (bar) is defined
       this.error = null
-      const areAllFieldsFilledIn = Object
-        .keys(this.bar)
-        .every(key => !!this.bar[key])
-      console.log('before sending object bar', this.bar)
-      if (!areAllFieldsFilledIn) {
-        this.error = 'Please fill in all the required fields'
-        return
-      }
-      // call API
-      try {
-        this.homer = true
-        await BarsService.post(this.bar)
-        this.$router.push({
-          name: 'bars'
-        })
-      } catch (err) {
-        console.log('error', err)
-      }
-    },
-    updateVenue: function (updatedTitle) {
-      this.venue = updatedTitle
-    },
-    updateOffering: function (updatedOffering) {
-      this.spunte = updatedOffering
-      this.preview = true
-      console.log('update', this.spunte)
-    },
-    createBar () {
       delete this.venue.address_components
       delete this.venue.adr_address
       delete this.venue.geometry
@@ -177,8 +151,58 @@ export default {
       delete this.venue.vicinity
       const bar = Object.assign(this.venue, this.spunte)
       this.bar = bar
-      this.saved = true
-      console.log('createBar', this.bar)
+      const areAllFieldsFilledIn = Object
+        .keys(this.bar)
+        .every(key => !!this.bar[key])
+      console.log('before sending object bar', this.bar)
+      if (!areAllFieldsFilledIn) {
+        this.error = 'Please fill in all the required fields'
+        return
+      }
+      // call API
+      try {
+        this.saved = true
+        console.log('createBar', this.bar)
+        await BarsService.post(this.bar)
+      } catch (err) {
+        console.log('error', err)
+      }
+    },
+    updateVenue: function (updatedTitle) {
+      this.venue = updatedTitle
+    },
+    updateOffering: function (updatedOffering) {
+      this.spunte = updatedOffering
+      this.preview = true
+      console.log('update', this.spunte)
+    },
+    // createBar () {
+    //   delete this.venue.address_components
+    //   delete this.venue.adr_address
+    //   delete this.venue.geometry
+    //   delete this.venue.html_attributions
+    //   delete this.venue.icon
+    //   delete this.venue.id
+    //   delete this.venue.international_phone_number
+    //   delete this.venue.opening_hours
+    //   delete this.venue.photos
+    //   delete this.venue.place_id
+    //   delete this.venue.reference
+    //   delete this.venue.reviews
+    //   delete this.venue.scope
+    //   delete this.venue.types
+    //   delete this.venue.url
+    //   delete this.venue.utc_offset
+    //   delete this.venue.vicinity
+    //   const bar = Object.assign(this.venue, this.spunte)
+    //   this.bar = bar
+    //   this.saved = true
+    //   console.log('createBar', this.bar)
+    // },
+    moveon () {
+      this.$router.push({
+        name: 'bars'
+      })
     }
   },
   components: {
