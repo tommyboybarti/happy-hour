@@ -24,9 +24,7 @@ module.exports = {
           break
         case 'password':
           res.status(400).send({
-            error: `Please make sure the password has got:
-            <br>
-            At least 8 and not more than 32 lower or upper case characters`
+            error: `Please make sure the password has got at least 8 and not more than 32 lower or upper case characters`
           })
           break
         default:

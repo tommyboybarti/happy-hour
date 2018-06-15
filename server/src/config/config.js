@@ -2,6 +2,7 @@ const path = require('path')
 
 // config that sets the port and an attribute db that contains all the seq related configurations
 module.exports = {
+// In many environments (e.g. Heroku), and as a convention, you can set the environment variable PORT to tell your web server what port to listen on.
   port: process.env.PORT || 8081,
   db: {
     // load in environment variables OR a fallback to happy-hour (name of db)
