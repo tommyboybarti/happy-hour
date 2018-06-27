@@ -77,6 +77,11 @@
             color="accent">
             Save changes
           </v-btn>
+          <v-btn
+            @click="removeBar"
+            color="accent">
+            Delete venue
+          </v-btn>
         </v-card-actions>
       </v-card-text>
     </panel>
@@ -127,6 +132,15 @@ export default {
       // const barId = this.$store.state.route.params.barId
       try {
         await BarsService.put(this.bar)
+        // this works as long as the browser keeps a history
+        this.$router.go(-1)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async removeBar () {
+      try {
+        await BarsService.delete(this.bar)
         // this works as long as the browser keeps a history
         this.$router.go(-1)
       } catch (err) {

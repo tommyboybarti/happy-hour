@@ -22,6 +22,8 @@ module.exports = (app) => {
     BarsController.post)
   app.put('/bars/:barId',
     BarsController.put)
+  app.delete('/bars/:barId',
+    BarsController.delete)
 
   app.get('/bookmarks',
     isAuthenticated,

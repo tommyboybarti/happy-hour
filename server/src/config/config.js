@@ -1,3 +1,4 @@
+// The path module provides utilities for working with file and directory paths
 const path = require('path')
 
 // config that sets the port and an attribute db that contains all the seq related configurations
@@ -14,6 +15,7 @@ module.exports = {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
       // where to store the db CHECK THE DAMN FILE PATH!!!
+      // The path.resolve() method resolves a sequence of paths or path segments into an absolute path.
       storage: path.resolve(__dirname, '../../happy-hour.sqlite'),
       // getting rid of warning about deprecated String based operators..
       operatorsAliases: false

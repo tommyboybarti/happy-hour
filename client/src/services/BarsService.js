@@ -20,5 +20,8 @@ export default {
   },
   put (bar) {
     return Api().put(`bars/${bar.id}`, bar)
+  },
+  delete (bar) {
+    return Api().delete(`bars/${bar.id}`, bar)
   }
 }

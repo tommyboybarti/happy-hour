@@ -10,7 +10,7 @@ const db = {}
 
 // declare seq object
 const sequelize = new Sequelize(
-  // connect database which can be passed to seq.
+  // connect to database which can be passed to seq.
   config.db.database,
   config.db.user,
   config.db.password,

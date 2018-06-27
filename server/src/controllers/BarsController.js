@@ -36,6 +36,7 @@ module.exports = {
   },
   async show (req, res) {
     try {
+      // .findById .create etc are sequelize methods
       const bar = await Bar.findById(req.params.barId)
       res.send(bar)
     } catch (err) {
@@ -46,6 +47,7 @@ module.exports = {
   },
   async post (req, res) {
     try {
+      // create a new instance of the Bar model using the data which is sent in the request body (name, location etc)
       const bar = await Bar.create(req.body)
       res.send(bar)
       console.log('postbar', bar)
@@ -66,6 +68,20 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured trying to update your content'
+      })
+    }
+  },
+  async delete (req, res, next) {
+    try {
+      await Bar.destroy(req.body, {
+        where: {
+          id: req.params.barId
+        }
+      })
+      res.send(req.body)
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to delete your content'
       })
     }
   }
