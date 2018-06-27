@@ -142,7 +142,7 @@ export default {
       try {
         await BarsService.delete(this.bar)
         // this works as long as the browser keeps a history
-        this.$router.go(-1)
+        this.$router.push('./bars')
       } catch (err) {
         console.log(err)
       }

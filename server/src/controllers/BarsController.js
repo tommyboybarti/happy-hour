@@ -5,9 +5,9 @@ const Op = Sequelize.Op
 module.exports = {
   async index (req, res) {
     try {
-      // see whether search query is set
       let bars = null
       const search = req.query.search
+      // see whether search query is set
       if (search) {
         bars = await Bar.findAll({
           where: {
@@ -24,10 +24,10 @@ module.exports = {
         bars = await Bar.findAll({
           limit: 10
         })
-        console.log('barscontroller', bars)
+        // console.log('barscontroller', bars)
       }
       res.send(bars)
-      console.log('AAAAAAAAAAAHHHHHHHHHHHHH', bars)
+      // console.log('AAAAAAAAAAAHHHHHHHHHHHHH', bars)
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured trying to fetch your request'
@@ -73,7 +73,8 @@ module.exports = {
   },
   async delete (req, res, next) {
     try {
-      await Bar.destroy(req.body, {
+      // no need for req.body
+      await Bar.destroy({
         where: {
           id: req.params.barId
         }
