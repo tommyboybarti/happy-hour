@@ -132,8 +132,7 @@ export default {
       // const barId = this.$store.state.route.params.barId
       try {
         await BarsService.put(this.bar)
-        // this works as long as the browser keeps a history
-        this.$router.go(-1)
+        this.$router.push('./bars')
       } catch (err) {
         console.log(err)
       }
@@ -141,7 +140,6 @@ export default {
     async removeBar () {
       try {
         await BarsService.delete(this.bar)
-        // this works as long as the browser keeps a history
         this.$router.push('./bars')
       } catch (err) {
         console.log(err)

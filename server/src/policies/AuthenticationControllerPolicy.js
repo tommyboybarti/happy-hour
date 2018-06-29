@@ -33,7 +33,7 @@ module.exports = {
           })
       }
     } else {
-      // if all is well we go on
+      // if all is well we move on to AuthenticationController (see routes.js)
       next()
     }
   }

@@ -23,6 +23,8 @@ app.use(cors())
 
 require('./passport')
 
+// require controllers set in routes and subsequently the controllers folder
+// fire the function in routes and pass thru the app parameter - IMPORTANT!
 require('./routes')(app)
 // synching sequelize to the DB
 sequelize.sync({force: false})
