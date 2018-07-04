@@ -10,14 +10,14 @@ const db = {}
 
 // declare seq object
 const sequelize = new Sequelize(
-  // connect to database which can be passed to seq.
+  // connect to database and load in some configurations from the config file
   config.db.database,
   config.db.user,
   config.db.password,
   config.db.options
 )
 
-// helper function to add more models down the road
+// helper function creating access to all models in the folder, so we don't have to declare them in squelize every single file
 // writing some functionality to read thru models folder
 // read thru the current dir and return an array of files
 fs.readdirSync(__dirname)
@@ -25,9 +25,10 @@ fs.readdirSync(__dirname)
   .filter((file) => 
     file !== 'index.js'
   )
-  // load the files we found in models into seq.
   .forEach((file) => {
+    // find model and import it in seq.
     const model = sequelize.import(path.join(__dirname, file))
+    // for instance db.User = model
     db[model.name] = model
   })
 
@@ -37,7 +38,7 @@ Object.keys(db).forEach(function (modelName) {
   }
 })
   
-  // seq = ORM, create access to Objects by storing them in vars
+// seq = ORM, create access to Objects by storing them in vars
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 

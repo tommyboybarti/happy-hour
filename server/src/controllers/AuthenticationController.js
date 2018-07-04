@@ -1,5 +1,5 @@
 // controller folder is to define all the endpoints
-// import User model
+// import User model as an {attribute} from index.js (which reads thru the folder)
 const {User} = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')

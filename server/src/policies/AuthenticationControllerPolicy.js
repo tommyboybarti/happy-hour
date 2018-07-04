@@ -1,8 +1,9 @@
-// Joi is fro the validation of different inputs in express
+// Joi is for the validation of different inputs in express
 const Joi = require('joi')
 
 module.exports = {
   // express middelware using next to invoque the next thing in the route path
+  // method dealing with the request that comes in, sending a response and invoking the next step
   register (req, res, next) {
     const schema = {
       // joi has some readymade validation features like email()
@@ -16,6 +17,7 @@ module.exports = {
     const {error, value} = Joi.validate(req.body, schema)
 
     if (error) {
+      // show the key that failed (email or pw)
       switch (error.details[0].context.key) {
         case 'email':
           res.status(400).send({
