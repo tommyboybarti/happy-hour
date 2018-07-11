@@ -5,7 +5,6 @@
       v-model="search">
     </v-text-field>
   </panel>
-
 </template>
 
 <script>

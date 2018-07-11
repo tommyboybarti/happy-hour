@@ -11,6 +11,8 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import Panel from '@/templates/Panel'
 import VueTimepicker from 'vue2-timepicker'
 
+const config = require('./config/config')
+
 Vue.config.productionTip = false
 
 Vue.component('panel', Panel)
@@ -29,7 +31,7 @@ Vue.use(Vuetify, {
 })
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBO1fhDIQu3jQ7fmLhqcTd-KxImigBBM5s',
+    key: config.googleApi,
     libraries: 'places'
   }
 })
