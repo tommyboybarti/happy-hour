@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-media height="800px" class="white--text" :src="require('@/assets/stephan-valentin-259614-unsplash.jpg')">
+    <v-card-media height="600px" class="white--text" :src="require('@/assets/stephan-valentin-259614-unsplash.jpg')">
       <v-container fill-height>
         <v-layout>
           <v-flex class="pt-5" offset-xs6>

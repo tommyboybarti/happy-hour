@@ -19,12 +19,12 @@ Vue.component('panel', Panel)
 Vue.use(VueTimepicker)
 Vue.use(Vuetify, {
   theme: {
-    primary: '#1E88E5',
-    secondary: '#90CAF9',
-    accent: '#880E4F',
-    error: '#D50000',
+    primary: '#307794',
+    secondary: '#40A8B2',
+    accent: '#E04177',
+    error: '#E04177',
     warning: '#ffeb3b',
-    info: '#2196f3',
+    info: '#DDB6A7',
     success: '#4caf50'
   }
 
